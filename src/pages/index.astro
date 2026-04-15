@@ -1,0 +1,611 @@
+---
+const siteUrl = 'https://bitbrd.com';
+const title = 'BitBrd — Tech Bundle for Independent Restaurants & Retail';
+const description = 'Websites, local SEO, modern phone systems, and custom dashboards for independent restaurants and small-batch retail. One team. Owner-operator pricing.';
+
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'BitBrd',
+  url: siteUrl,
+  logo: `${siteUrl}/logo.png`,
+  description,
+  areaServed: 'United States',
+  knowsAbout: [
+    'Website design',
+    'Local SEO',
+    'VOIP phone systems',
+    'Business dashboards',
+    'Small business marketing',
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What does it cost?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Website builds start at $3,500 for a 5-page Shopify or Astro site. VOIP phone systems start at $45/line/month all-in. Custom dashboards start at $1,000 to build, priced up from there based on scope and integrations. Ongoing SEO runs $500–$1,500/month depending on scope.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do you really replace my phone system?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes — and for most small operators, we cut the phone bill in half or better. Modern VOIP handles everything legacy PBX does plus voicemail-to-email, SMS from your business number, and mobile softphone. We port your existing number so customers never notice the switch.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What does a custom dashboard actually pull in?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Whatever you use. Common integrations: Shopify, Square, Toast, DoorDash, Uber Eats, GA4, Google Search Console, QuickBooks, Homebase, and inventory systems. We build it around your business — not a template.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long until my site is live?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '4–6 weeks from signed proposal to launch. Two weeks of discovery, three weeks of build, one week of polish and go-live. Phone system switchover is usually a 1-week window once numbers are ported.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do you work with franchises or chains?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. We are built for independent operators and single-location businesses. If you are a regional chain or multi-unit group, we will refer you to someone better suited.',
+      },
+    },
+  ],
+};
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta property="og:title" content="BitBrd — Tech Bundle for Independent Operators" />
+<meta property="og:description" content="Build it. Find it. Answer it. See it. The tech stack independent restaurants and retailers actually need." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content={siteUrl} />
+<meta property="og:image" content={`${siteUrl}/og-image.png`} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="BitBrd — Tech Bundle for Independent Operators" />
+<meta name="twitter:description" content="Build it. Find it. Answer it. See it." />
+<meta name="twitter:image" content={`${siteUrl}/og-image.png`} />
+<link rel="canonical" href={siteUrl} />
+<link rel="icon" type="image/png" href="/logo.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<script type="application/ld+json" set:html={JSON.stringify(orgSchema)}></script>
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+
+<style>
+:root{
+  --navy:#0F3F7A;
+  --navy-900:#082545;
+  --navy-800:#0A1F3D;
+  --navy-700:#0E2E55;
+  --sky:#9FD4F2;
+  --sky-light:#CFE9F7;
+  --ink:#0A1628;
+  --cream:#F7FAFD;
+  --text:#E8F2FC;
+  --muted:#8CA3BA;
+  --accent:#4AA8DC;
+  --border:rgba(159,212,242,0.15);
+  --border-strong:rgba(159,212,242,0.35);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--ink);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.pixel{font-family:'Press Start 2P',monospace;letter-spacing:0.02em;line-height:1.4}
+.eyebrow{font-family:'Press Start 2P',monospace;font-size:10px;color:var(--sky);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1.25rem;display:inline-block}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;font-family:'Inter',sans-serif;font-weight:600;font-size:0.95rem;border-radius:4px;transition:all 0.2s;border:none;cursor:pointer}
+.btn-primary{background:var(--sky);color:var(--navy-900)}
+.btn-primary:hover{background:var(--sky-light);transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--sky);border:1px solid var(--border-strong)}
+.btn-ghost:hover{background:rgba(159,212,242,0.05);border-color:var(--sky)}
+
+.nav{position:sticky;top:0;z-index:100;background:rgba(10,22,40,0.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1200px;margin:0 auto}
+.nav-logo{height:36px;width:auto}
+.nav-menu{display:flex;gap:32px;align-items:center}
+.nav-menu a{font-size:0.9rem;color:var(--muted);transition:color 0.2s}
+.nav-menu a:hover{color:var(--text)}
+.nav-menu .btn{padding:10px 20px;font-size:0.85rem}
+
+.hero{padding:100px 0 80px;background:radial-gradient(ellipse at top right,rgba(15,63,122,0.4),transparent 60%),radial-gradient(ellipse at bottom left,rgba(74,168,220,0.15),transparent 50%),var(--ink);position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:60px;align-items:center}
+.hero h1{font-family:'Press Start 2P',monospace;font-size:clamp(1.6rem,3.8vw,2.8rem);line-height:1.35;color:var(--cream);margin-bottom:1.5rem;letter-spacing:-0.01em}
+.hero h1 span{color:var(--sky)}
+.hero-sub{font-size:1.15rem;line-height:1.7;color:var(--muted);margin-bottom:2rem;max-width:540px}
+.hero-ctas{display:flex;gap:16px;flex-wrap:wrap}
+.hero-mascot{width:100%;max-width:420px;margin-left:auto;filter:drop-shadow(0 20px 40px rgba(74,168,220,0.25))}
+
+.proof{padding:60px 0;border-top:1px solid var(--border);background:var(--navy-900)}
+.proof-label{text-align:center;font-family:'Press Start 2P',monospace;font-size:10px;color:var(--sky);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:2rem}
+.proof-logos{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;align-items:center}
+.proof-logo{min-height:50px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:500;opacity:0.75;transition:opacity 0.2s,color 0.2s;font-size:1.02rem;text-align:center;font-style:italic;padding:8px 12px}
+.proof-logo:hover{opacity:1;color:var(--text)}
+
+.problem{padding:100px 0;background:var(--ink)}
+.section-header{text-align:center;max-width:720px;margin:0 auto 4rem}
+.section-header h2{font-family:'Press Start 2P',monospace;font-size:clamp(1.3rem,2.6vw,2rem);line-height:1.4;color:var(--cream);margin-bottom:1.25rem}
+.section-header p{font-size:1.1rem;color:var(--muted);line-height:1.7}
+.problem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.problem-card{background:var(--navy-800);padding:32px 28px;border:1px solid var(--border);border-radius:6px}
+.problem-card-num{font-family:'Press Start 2P',monospace;font-size:14px;color:var(--sky);margin-bottom:1rem}
+.problem-card h3{font-size:1.1rem;font-weight:600;color:var(--cream);margin-bottom:0.75rem}
+.problem-card p{color:var(--muted);font-size:0.95rem;line-height:1.7}
+
+.services{padding:100px 0;background:var(--navy-900);border-top:1px solid var(--border)}
+.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.service-card{background:var(--ink);padding:36px 32px;border:1px solid var(--border);border-radius:6px;transition:border-color 0.3s}
+.service-card:hover{border-color:var(--sky)}
+.service-icon{width:48px;height:48px;background:var(--navy);border-radius:4px;display:flex;align-items:center;justify-content:center;color:var(--sky);font-family:'Press Start 2P',monospace;font-size:16px;margin-bottom:1.5rem}
+.service-card h3{font-size:1.25rem;font-weight:600;color:var(--cream);margin-bottom:0.75rem}
+.service-card p{color:var(--muted);font-size:0.95rem;line-height:1.7;margin-bottom:1rem}
+.service-list{list-style:none;display:flex;flex-direction:column;gap:0.5rem}
+.service-list li{font-size:0.88rem;color:var(--muted);padding-left:18px;position:relative}
+.service-list li::before{content:'\u25B8';position:absolute;left:0;color:var(--sky)}
+
+.process{padding:100px 0;background:var(--ink);border-top:1px solid var(--border)}
+.process-timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative}
+.process-step{text-align:center}
+.process-num{display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;background:var(--navy);border:2px solid var(--sky);border-radius:8px;font-family:'Press Start 2P',monospace;font-size:16px;color:var(--sky);margin-bottom:1.5rem}
+.process-step h3{font-size:1.1rem;font-weight:600;color:var(--cream);margin-bottom:0.5rem}
+.process-step p{font-size:0.9rem;color:var(--muted);line-height:1.6}
+
+.industries{padding:100px 0;background:var(--navy-900);border-top:1px solid var(--border)}
+.industries-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.industry-card{background:var(--ink);padding:40px;border:1px solid var(--border);border-radius:8px}
+.industry-card h3{font-family:'Press Start 2P',monospace;font-size:1rem;color:var(--sky);margin-bottom:1rem;line-height:1.5}
+.industry-card .tagline{font-size:1.05rem;color:var(--cream);margin-bottom:1.5rem;font-weight:500}
+.industry-list{list-style:none;column-count:2;column-gap:24px}
+.industry-list li{font-size:0.9rem;color:var(--muted);padding:6px 0 6px 16px;position:relative;break-inside:avoid}
+.industry-list li::before{content:'\u25B8';color:var(--sky);position:absolute;left:0}
+
+.case{padding:100px 0;background:var(--ink);border-top:1px solid var(--border)}
+.case-inner{display:grid;grid-template-columns:1fr 1.2fr;gap:60px;align-items:center;background:linear-gradient(135deg,var(--navy-800),var(--navy-900));padding:60px;border-radius:12px;border:1px solid var(--border-strong)}
+.case-tag{font-family:'Press Start 2P',monospace;font-size:10px;color:var(--sky);letter-spacing:0.15em;margin-bottom:1rem;display:block;text-transform:uppercase}
+.case-inner h3{font-size:2rem;font-weight:700;color:var(--cream);margin-bottom:1.25rem;line-height:1.25}
+.case-desc{color:var(--muted);margin-bottom:2rem;font-size:1rem;line-height:1.7}
+.case-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:2rem}
+.case-metric-num{font-family:'Press Start 2P',monospace;font-size:1.25rem;color:var(--sky);margin-bottom:0.5rem}
+.case-metric-label{font-size:0.82rem;color:var(--muted);line-height:1.4}
+.case-visual{background:var(--ink);border:1px solid var(--border);border-radius:8px;aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Press Start 2P',monospace;color:var(--sky);padding:32px;text-align:center;font-size:0.9rem;line-height:1.8;gap:1.25rem}
+.case-visual-sub{font-family:'Inter',sans-serif;color:var(--muted);font-size:0.82rem;letter-spacing:0.08em}
+
+.why{padding:100px 0;background:var(--navy-900);border-top:1px solid var(--border)}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.why-card{text-align:center;padding:24px}
+.why-card-icon{width:56px;height:56px;background:var(--navy);border:2px solid var(--sky);border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-family:'Press Start 2P',monospace;color:var(--sky);margin-bottom:1rem;font-size:1rem}
+.why-card h3{font-size:1.05rem;color:var(--cream);margin-bottom:0.5rem;font-weight:600}
+.why-card p{font-size:0.88rem;color:var(--muted);line-height:1.6}
+
+.faq{padding:100px 0;background:var(--ink);border-top:1px solid var(--border)}
+.faq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.faq-item{background:var(--navy-900);border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.faq-q{padding:20px 24px;font-weight:600;color:var(--cream);font-size:1.02rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between;list-style:none}
+.faq-q::-webkit-details-marker{display:none}
+.faq-q::after{content:'+';color:var(--sky);font-size:1.4rem;font-weight:300}
+details[open] .faq-q::after{content:'\u2212'}
+.faq-a{padding:0 24px 20px;color:var(--muted);font-size:0.95rem;line-height:1.7}
+
+.cta{padding:100px 0;background:linear-gradient(135deg,var(--navy),var(--navy-900));text-align:center;border-top:1px solid var(--border)}
+.cta-inner{max-width:680px;margin:0 auto}
+.cta h2{font-family:'Press Start 2P',monospace;font-size:clamp(1.3rem,2.6vw,2rem);color:var(--cream);line-height:1.4;margin-bottom:1.25rem}
+.cta p{color:var(--sky-light);margin-bottom:2rem;font-size:1.05rem;line-height:1.7}
+.cta-form{max-width:480px;margin:0 auto;display:flex;flex-direction:column;gap:12px;text-align:left}
+.cta-form label{font-size:0.82rem;color:var(--sky-light);font-weight:500;margin-bottom:2px}
+.cta-form input,.cta-form textarea{background:var(--ink);border:1px solid var(--border);border-radius:4px;padding:12px 14px;color:var(--text);font-family:'Inter',sans-serif;font-size:0.95rem;transition:border-color 0.2s}
+.cta-form input:focus,.cta-form textarea:focus{outline:none;border-color:var(--sky)}
+.cta-form textarea{resize:vertical;min-height:90px}
+.cta-form button{margin-top:8px;align-self:flex-start}
+.cta-form .honeypot{display:none}
+
+.footer{padding:60px 0 32px;background:var(--ink);border-top:1px solid var(--border)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-brand img{height:32px;margin-bottom:16px}
+.footer-brand p{color:var(--muted);font-size:0.9rem;line-height:1.6;max-width:320px}
+.footer-col h4{font-family:'Press Start 2P',monospace;font-size:10px;color:var(--sky);letter-spacing:0.15em;margin-bottom:1rem;text-transform:uppercase}
+.footer-col a{display:block;color:var(--muted);font-size:0.9rem;padding:6px 0;transition:color 0.2s}
+.footer-col a:hover{color:var(--text)}
+.footer-bottom{padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;color:var(--muted);font-size:0.85rem;flex-wrap:wrap;gap:12px}
+
+@media(max-width:960px){
+  .hero-grid{grid-template-columns:1fr;gap:40px;text-align:center}
+  .hero-ctas{justify-content:center}
+  .hero-mascot{margin:0 auto}
+  .hero-sub{margin-left:auto;margin-right:auto}
+  .proof-logos{grid-template-columns:1fr;gap:16px}
+  .problem-grid{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:1fr}
+  .process-timeline{grid-template-columns:repeat(2,1fr);gap:32px}
+  .industries-grid{grid-template-columns:1fr}
+  .case-inner{grid-template-columns:1fr;padding:40px 24px}
+  .case-metrics{grid-template-columns:repeat(3,1fr);gap:12px}
+  .why-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .nav-menu{gap:20px}
+  .nav-menu a:not(.btn){display:none}
+}
+@media(max-width:640px){
+  .footer-grid{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr}
+  .industry-list{column-count:1}
+  .hero{padding:60px 0 50px}
+  .problem,.services,.process,.industries,.case,.why,.faq,.cta{padding:70px 0}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#top"><img src="/logo.png" alt="BitBrd" class="nav-logo" /></a>
+    <div class="nav-menu">
+      <a href="#services">Services</a>
+      <a href="#industries">Industries</a>
+      <a href="#case-studies">Case Studies</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact" class="btn btn-primary">Book a call</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero" id="top">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">The Small-Business Tech Partner</span>
+      <h1>Build it. Find it. <span>Answer it. See it.</span></h1>
+      <p class="hero-sub">BitBrd bundles the digital infrastructure independent restaurants and small-batch retailers actually need — websites, local search, modern phone systems, and custom dashboards that show every sales channel in one view. One team. Owner-operator pricing.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn btn-primary">Book a free audit &rarr;</a>
+        <a href="#case-studies" class="btn btn-ghost">See our work</a>
+      </div>
+    </div>
+    <div>
+      <img src="/mascot.png" alt="BitBrd — pixel bluebird perched on a developer laptop" class="hero-mascot" />
+    </div>
+  </div>
+</section>
+
+<section class="proof">
+  <div class="container">
+    <div class="proof-label">Trusted by independent operators</div>
+    <div class="proof-logos">
+      <a href="https://witchesbrew.co" target="_blank" rel="noopener" class="proof-logo">Witches Brew Coffee Co.</a>
+      <div class="proof-logo">Discount Trophies</div>
+      <div class="proof-logo">West Little Rock Glass</div>
+    </div>
+  </div>
+</section>
+
+<section class="problem">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">The problem</span>
+      <h2>You didn't open a shop to run a tech department.</h2>
+      <p>Independent operators get stuck between three bad options. BitBrd is the fourth.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-card-num">01</div>
+        <h3>Six-figure agencies</h3>
+        <p>Built for chains, priced like chains. You don't need a retainer bigger than your rent to show up on Google.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card-num">02</div>
+        <h3>Stitched-together DIY</h3>
+        <p>Wix for the site. A legacy PBX for the phones. Shopify for commerce. Analytics in another tab. Four monthly bills, zero integration.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card-num">03</div>
+        <h3>Hiring in-house</h3>
+        <p>A full-time marketing or tech hire costs $80K+ before benefits. You can't justify it &mdash; and you shouldn't have to.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="services">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">What we do</span>
+      <h2>Four pillars. One team. No duct tape.</h2>
+      <p>Pick one to start. Add the rest as you grow &mdash; everything talks to everything.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">B</div>
+        <h3>Build it &mdash; Custom Websites</h3>
+        <p>Fast, mobile-first sites on Shopify, Astro, or Webflow. Built to convert browsers into customers &mdash; not to win design awards.</p>
+        <ul class="service-list">
+          <li>Menus, online ordering, reservations</li>
+          <li>Shopify commerce for retail &amp; specialty food</li>
+          <li>Accessibility and page speed baked in</li>
+          <li>You own the site, the domain, everything</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">F</div>
+        <h3>Find it &mdash; Local SEO</h3>
+        <p>Show up when the person walking by pulls out their phone and searches. The lowest-hanging fruit most small businesses never pick.</p>
+        <ul class="service-list">
+          <li>Google Business Profile tuning &amp; posts</li>
+          <li>Neighborhood-level keyword targeting</li>
+          <li>On-page schema &amp; structured data</li>
+          <li>Review response &amp; citation building</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">A</div>
+        <h3>Answer it &mdash; VOIP &amp; Auto-Attendants</h3>
+        <p>A modern business phone system that doesn't drain your margins. Auto-attendants, smart routing, and voicemail-to-email at a fraction of legacy PBX pricing.</p>
+        <ul class="service-list">
+          <li>Custom auto-attendant + call-tree</li>
+          <li>Business-hours routing &amp; after-hours handling</li>
+          <li>Voicemail transcription to email or SMS</li>
+          <li>Text-enabled business line included</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">S</div>
+        <h3>See it &mdash; Custom Dashboards</h3>
+        <p>One dashboard. Every sales channel. Finally. Shopify, DoorDash, Square, Toast, GA4, labor, inventory &mdash; unified in a view built for you, not an off-the-shelf BI tool.</p>
+        <ul class="service-list">
+          <li>Multi-channel revenue &amp; order tracking</li>
+          <li>Daily KPIs, labor cost, and inventory alerts</li>
+          <li>SEO &amp; Google Search performance rolled in</li>
+          <li>Built custom to how your business actually runs</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">How we work</span>
+      <h2>Four phases. No surprises.</h2>
+      <p>A launch window measured in weeks, not quarters.</p>
+    </div>
+    <div class="process-timeline">
+      <div class="process-step">
+        <div class="process-num">01</div>
+        <h3>Nest</h3>
+        <p>2-week discovery. Audit, positioning, keyword research, sitemap.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">02</div>
+        <h3>Build</h3>
+        <p>Website, SEO foundation, and Google Business Profile built in parallel.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">03</div>
+        <h3>Launch</h3>
+        <p>Site live. Tracking in place. First month of content queued.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">04</div>
+        <h3>Grow</h3>
+        <p>Monthly SEO, content, and reporting. Measured in customers, not vanity metrics.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="industries" class="industries">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Who we work with</span>
+      <h2>Two niches. Deep.</h2>
+      <p>We only take on independents. No chains, no franchises, no PE-backed rollups.</p>
+    </div>
+    <div class="industries-grid">
+      <div class="industry-card">
+        <h3>Independent Restaurants &amp; Cafés</h3>
+        <p class="tagline">Specialty coffee, neighborhood restaurants, bakeries, tea rooms, and bars.</p>
+        <ul class="industry-list">
+          <li>Coffee shops</li>
+          <li>Cafés &amp; bistros</li>
+          <li>Bakeries &amp; pastry</li>
+          <li>Tea rooms</li>
+          <li>Wine &amp; cocktail bars</li>
+          <li>Food trucks &amp; pop-ups</li>
+        </ul>
+      </div>
+      <div class="industry-card">
+        <h3>Small-Batch Retail &amp; Specialty Shops</h3>
+        <p class="tagline">Makers, boutiques, and specialty stores selling online and in-store.</p>
+        <ul class="industry-list">
+          <li>Makers &amp; artisans</li>
+          <li>Clothing boutiques</li>
+          <li>Home goods &amp; décor</li>
+          <li>Bookstores &amp; vintage</li>
+          <li>Apothecaries &amp; wellness</li>
+          <li>Specialty food &amp; drink</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="case-studies" class="case">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Featured case study</span>
+      <h2>A new café in a city that already had its favorites.</h2>
+    </div>
+    <div class="case-inner">
+      <div class="case-visual">
+        Witches Brew<br />Coffee Co.
+        <div class="case-visual-sub">MID-CITY &middot; NEW ORLEANS</div>
+      </div>
+      <div>
+        <span class="case-tag">Specialty Coffee &middot; NOLA</span>
+        <h3>New brand, no web presence, competing with established French Quarter cafés.</h3>
+        <p class="case-desc">Witches Brew leaned on every pillar we offer &mdash; the Shopify site, the local SEO foundation, a modern phone system, and a custom real-time dashboard that pulls Shopify, DoorDash, Homebase labor, and Google Search Console into one view the owners check every morning. New Orleans is ferociously competitive for specialty coffee. They nearly doubled monthly revenue in their first three months &mdash; and banked a wall of five-star reviews along the way.</p>
+        <div class="case-metrics">
+          <div>
+            <div class="case-metric-num">$10K &rarr; $19K</div>
+            <div class="case-metric-label">Monthly revenue, month 1 &rarr; month 3</div>
+          </div>
+          <div>
+            <div class="case-metric-num">+90%</div>
+            <div class="case-metric-label">3-month revenue growth</div>
+          </div>
+          <div>
+            <div class="case-metric-num">30+</div>
+            <div class="case-metric-label">Five-star Google reviews, first quarter</div>
+          </div>
+        </div>
+        <a href="https://witchesbrew.co" target="_blank" rel="noopener" class="btn btn-ghost">Visit witchesbrew.co &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Why BitBrd</span>
+      <h2>Priced for owner-operators. Focused by design.</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-card-icon">&#9650;</div>
+        <h3>Niche focus</h3>
+        <p>Independent restaurants and retail only. We know your margins, your vendors, your rhythm.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">&#9670;</div>
+        <h3>Bundled stack</h3>
+        <p>Four services, one team, one invoice. No duct-taped vendor list.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">$</div>
+        <h3>Owner pricing</h3>
+        <p>Monthly plans from $500 &mdash; not $5,000. Built for single-location operators.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">&#10022;</div>
+        <h3>One point of contact</h3>
+        <p>You talk to the person doing the work. No account managers, no handoff chains.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="faq">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Frequently asked</span>
+      <h2>Questions, answered straight.</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary class="faq-q">What does it cost?</summary>
+        <div class="faq-a">Website builds start at $3,500 for a 5-page Shopify or Astro site. VOIP phone systems start at $45/line/month all-in. Custom dashboards start at $1,000 to build, priced up from there based on scope and integrations. Ongoing SEO runs $500–$1,500/month depending on scope. Everything is scoped and quoted up front &mdash; no surprises.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Do you really replace my phone system?</summary>
+        <div class="faq-a">Yes &mdash; and for most small operators, we cut the phone bill in half or better. Modern VOIP handles everything legacy PBX does (auto-attendant, call routing, hold music, voicemail) plus things it can't (voicemail-to-email, SMS from your business number, mobile softphone). We port your existing number so customers never notice the switch.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">What does a custom dashboard actually pull in?</summary>
+        <div class="faq-a">Whatever you use. Common integrations: Shopify, Square, Toast, DoorDash, Uber Eats, GA4, Google Search Console, QuickBooks, Homebase, and inventory systems. We build it around your business &mdash; not a template. You get one screen that answers "how did we do today?" in under 10 seconds.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">How long until my site is live?</summary>
+        <div class="faq-a">4–6 weeks from signed proposal to launch. Two weeks of discovery, three weeks of build, one week of polish and go-live. Phone system switchover is usually a 1-week window once numbers are ported.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">I already have a website &mdash; do you do improvements?</summary>
+        <div class="faq-a">Yes. We start every engagement with a free audit. Sometimes the right move is a rebuild; sometimes it's a restructure and SEO overhaul on what you have. We'll tell you honestly either way.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Do you work with franchises or chains?</summary>
+        <div class="faq-a">No. We're built for independent operators and single-location businesses. If you're a regional chain or multi-unit group, we'll refer you to someone better suited.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="cta">
+  <div class="container cta-inner">
+    <span class="eyebrow" style="color:var(--sky-light)">Let's see if it's a fit</span>
+    <h2>Free 30-minute audit. Real numbers. No pitch deck.</h2>
+    <p>We'll look at your website, your Google Business Profile, your phone setup, and your current reporting &mdash; then tell you what's costing you customers, what's costing you money, and where the fastest wins are.</p>
+    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="cta-form">
+      <input type="hidden" name="form-name" value="contact" />
+      <p class="honeypot"><label>Don't fill this out: <input name="bot-field" /></label></p>
+      <label for="name">Your name</label>
+      <input type="text" id="name" name="name" required />
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required />
+      <label for="business">Business name</label>
+      <input type="text" id="business" name="business" />
+      <label for="message">What do you need help with?</label>
+      <textarea id="message" name="message" rows="4"></textarea>
+      <button type="submit" class="btn btn-primary">Send &rarr;</button>
+    </form>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="/logo.png" alt="BitBrd" />
+        <p>The small-business tech partner for independent restaurants and small-batch retail. Websites. Local SEO. Phones. Dashboards. One team.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="#services">Websites</a>
+        <a href="#services">Local SEO</a>
+        <a href="#services">VOIP &amp; Phones</a>
+        <a href="#services">Dashboards</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#case-studies">Case Studies</a>
+        <a href="#industries">Industries</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:hello@bitbrd.com">hello@bitbrd.com</a>
+        <a href="https://witchesbrew.co" target="_blank" rel="noopener">Featured work</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; 2026 BitBrd. All rights reserved.</div>
+      <div>Made for the independents.</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
