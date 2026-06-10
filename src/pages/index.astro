@@ -29,7 +29,7 @@ const faqSchema = {
       name: 'What does it cost?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Website builds start at $3,500 for a 5-page Shopify or Astro site. VOIP phone systems start at $45/line/month all-in. Custom dashboards start at $1,000 to build, priced up from there based on scope and integrations. Ongoing SEO runs $500–$1,500/month depending on scope.',
+        text: 'Most brands go live for $400–$1,500 depending on pages and features — yes, we can take a brand live on a $400 budget. Active maintenance plans run $60–$150/month and cover hosting, updates, and content changes. VOIP phone systems start at $45/line/month all-in. Custom dashboards start at $1,000.',
       },
     },
     {
@@ -157,6 +157,11 @@ a{color:inherit;text-decoration:none}
 .proof-logos{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;align-items:center}
 .proof-logo{min-height:50px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:500;opacity:0.75;transition:opacity 0.2s,color 0.2s;font-size:1.02rem;text-align:center;font-style:italic;padding:8px 12px}
 .proof-logo:hover{opacity:1;color:var(--text)}
+.proof-img{height:74px;width:auto;opacity:0.9}
+.proof-mark{flex-direction:column;gap:4px;font-style:normal;line-height:1.1}
+.proof-mark span{display:block;font-size:0.62rem;font-weight:600;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.proof-mark--dta{font-family:Georgia,'Times New Roman',serif;font-size:1.35rem;font-weight:600;color:var(--cream)}
+.proof-mark--wlrg{font-family:'Inter',sans-serif;font-weight:700;font-size:1.15rem;color:var(--cream)}
 
 .problem{padding:100px 0;background:var(--ink)}
 .section-header{text-align:center;max-width:720px;margin:0 auto 4rem}
@@ -205,6 +210,10 @@ a{color:inherit;text-decoration:none}
 .case-metric-label{font-size:0.82rem;color:var(--muted);line-height:1.4}
 .case-visual{background:var(--ink);border:1px solid var(--border);border-radius:8px;aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Press Start 2P',monospace;color:var(--sky);padding:32px;text-align:center;font-size:0.9rem;line-height:1.8;gap:1.25rem}
 .case-visual-sub{font-family:'Inter',sans-serif;color:var(--muted);font-size:0.82rem;letter-spacing:0.08em}
+.case-visual--shot{padding:0;overflow:hidden;gap:0;transition:transform 0.25s,box-shadow 0.25s}
+.case-visual--shot:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(74,168,220,0.2)}
+.case-visual--shot img{width:100%;height:auto;display:block}
+.case-visual--shot .case-visual-sub{padding:12px;border-top:1px solid var(--border);width:100%;text-align:center}
 
 .why{padding:100px 0;background:var(--navy-900);border-top:1px solid var(--border)}
 .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
@@ -305,9 +314,15 @@ details[open] .faq-q::after{content:'−'}
   <div class="container">
     <div class="proof-label">Trusted by independent operators</div>
     <div class="proof-logos">
-      <a href="https://witchesbrew.co" target="_blank" rel="noopener" class="proof-logo">Witches Brew Coffee Co.</a>
-      <div class="proof-logo">Discount Trophies</div>
-      <div class="proof-logo">West Little Rock Glass</div>
+      <a href="https://witchesbrew.co" target="_blank" rel="noopener" class="proof-logo">
+        <img src="/client-witchesbrew.png" alt="Witches Brew Coffee Co." class="proof-img" loading="lazy" />
+      </a>
+      <a href="https://www.artrophies.com" target="_blank" rel="noopener" class="proof-logo proof-mark proof-mark--dta">
+        Discount Trophies<span>of Arkansas</span>
+      </a>
+      <a href="https://westlittlerockglass.com" target="_blank" rel="noopener" class="proof-logo proof-mark proof-mark--wlrg">
+        West Little Rock Glass<span>Custom Glass &middot; Since 2005</span>
+      </a>
     </div>
   </div>
 </section>
@@ -470,10 +485,10 @@ details[open] .faq-q::after{content:'−'}
       <h2>A new café in a city that already had its favorites.</h2>
     </div>
     <div class="case-inner">
-      <div class="case-visual">
-        Witches Brew<br />Coffee Co.
-        <div class="case-visual-sub">MID-CITY &middot; NEW ORLEANS</div>
-      </div>
+      <a class="case-visual case-visual--shot" href="https://witchesbrew.co" target="_blank" rel="noopener" aria-label="Visit witchesbrew.co">
+        <img src="/case-witchesbrew.png" alt="witchesbrew.co homepage — dark forest theme with the Witches Brew Coffee Co. logo" loading="lazy" width="960" height="720" />
+        <div class="case-visual-sub">WITCHESBREW.CO &middot; MID-CITY &middot; NEW ORLEANS</div>
+      </a>
       <div>
         <span class="case-tag">Specialty Coffee &middot; NOLA</span>
         <h3>New brand, no web presence, competing with established French Quarter cafés.</h3>
@@ -518,7 +533,7 @@ details[open] .faq-q::after{content:'−'}
       <div class="why-card">
         <div class="why-card-icon">$</div>
         <h3>Owner pricing</h3>
-        <p>Monthly plans from $500 &mdash; not $5,000. Built for single-location operators.</p>
+        <p>Sites live from $400. Maintenance plans $60&ndash;$150/month &mdash; not $500. Built for single-location operators.</p>
       </div>
       <div class="why-card">
         <div class="why-card-icon">&#10022;</div>
@@ -538,7 +553,7 @@ details[open] .faq-q::after{content:'−'}
     <div class="faq-list">
       <details class="faq-item">
         <summary class="faq-q">What does it cost?</summary>
-        <div class="faq-a">Website builds start at $3,500 for a 5-page Shopify or Astro site. VOIP phone systems start at $45/line/month all-in. Custom dashboards start at $1,000 to build, priced up from there based on scope and integrations. Ongoing SEO runs $500–$1,500/month depending on scope. Everything is scoped and quoted up front &mdash; no surprises.</div>
+        <div class="faq-a">Most brands go live for $400–$1,500 depending on pages and features — yes, we can take a brand live on a $400 budget. Active maintenance plans run $60–$150/month and cover hosting, updates, and content changes. VOIP phone systems start at $45/line/month all-in. Custom dashboards start at $1,000. Everything is scoped and quoted up front &mdash; no surprises.</div>
       </details>
       <details class="faq-item">
         <summary class="faq-q">Do you really replace my phone system?</summary>
