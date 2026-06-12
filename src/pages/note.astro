@@ -1,0 +1,124 @@
+---
+const title = 'A note from Paul | BitBrd';
+const description = 'Sixty seconds from the person who actually builds the work. No marketing department, no script.';
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href="https://bitbrd.com/note" />
+<link rel="icon" href="/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{--navy-900:#082545;--navy-800:#0A1F3D;--sky:#9FD4F2;--sky-light:#CFE9F7;--ink:#0A1628;--cream:#F7FAFD;--text:#E8F2FC;--muted:#8CA3BA;--green:#34D399;--border:rgba(159,212,242,0.15)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--ink);color:var(--text);line-height:1.7}
+.wrap{max-width:720px;margin:auto;padding:60px 24px 80px}
+.eyebrow{font-family:'Press Start 2P',monospace;font-size:10px;color:var(--sky);letter-spacing:0.15em;text-transform:uppercase}
+h1{font-family:'Press Start 2P',monospace;font-size:clamp(1.1rem,3vw,1.6rem);color:var(--cream);margin:16px 0 26px;line-height:1.5}
+.head{display:flex;gap:26px;align-items:flex-end;margin-bottom:30px}
+.head img{width:148px;height:182px;object-fit:cover;object-position:50% 22%;border-radius:8px;border:1px solid rgba(159,212,242,0.35);box-shadow:0 14px 36px rgba(8,37,69,0.6);flex:none}
+.head-meta{padding-bottom:6px}
+.head-meta .who{font-weight:700;color:var(--cream);font-size:1.05rem}
+.head-meta .where{color:var(--muted);font-size:0.9rem;margin-top:2px}
+
+/* voice note */
+.voice{display:flex;align-items:center;gap:16px;background:var(--navy-800);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin:0 0 36px}
+.voice-icon{flex:none;width:42px;height:42px;border-radius:50%;background:var(--navy-900);border:1px solid rgba(159,212,242,0.35);display:flex;align-items:center;justify-content:center}
+.voice-icon svg{width:20px;height:20px}
+.voice-label{font-family:'Press Start 2P',monospace;font-size:9px;color:var(--green);letter-spacing:0.08em;margin-bottom:6px}
+.voice audio{width:100%;height:36px}
+.voice-body{flex:1;min-width:0}
+.voice-missing{color:var(--muted);font-size:0.88rem;font-style:italic}
+
+.letter{color:var(--muted);font-size:1.02rem}
+.letter p{margin-bottom:1.15rem;max-width:60ch}
+.letter b{color:var(--text)}
+.sig{margin-top:30px;color:var(--cream);font-weight:600}
+.sig span{display:block;color:var(--muted);font-weight:400;font-size:0.88rem;margin-top:2px}
+
+.about{margin-top:46px;padding-top:34px;border-top:1px solid var(--border)}
+.about h2{font-family:'Press Start 2P',monospace;font-size:0.85rem;color:var(--cream);margin-bottom:14px;line-height:1.6}
+.about p{color:var(--muted);font-size:0.98rem;margin-bottom:1.05rem;max-width:62ch}
+.about b{color:var(--text)}
+.stack-label{font-family:'Press Start 2P',monospace;font-size:8px;color:var(--green);letter-spacing:0.12em;text-transform:uppercase;display:block;margin:18px 0 10px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}
+.tag{font-size:0.82rem;font-weight:600;color:var(--sky-light);background:var(--navy-800);border:1px solid var(--border);border-radius:4px;padding:5px 11px}
+.tag--hot{color:var(--green);border-color:rgba(52,211,153,0.4)}
+.reach{margin-top:40px;padding-top:30px;border-top:1px solid var(--border);display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;font-weight:600;font-size:0.9rem;border-radius:5px;text-decoration:none}
+.btn-p{background:var(--sky);color:var(--navy-900)}
+.btn-p:hover{background:var(--sky-light)}
+.btn-g{border:1px solid rgba(159,212,242,0.35);color:var(--sky)}
+.btn-g:hover{border-color:var(--sky)}
+a{text-decoration:none;color:inherit}
+@media(max-width:560px){.head{flex-direction:column;align-items:flex-start;gap:16px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="eyebrow">BitBrd &middot; from the builder</span>
+  <h1>A note from Paul.</h1>
+
+  <div class="head">
+    <img src="/paul.jpg" alt="Paul DeSana, founder of BitBrd" width="640" height="800" />
+    <div class="head-meta">
+      <div class="who">Paul DeSana</div>
+      <div class="where">Builds everything at BitBrd &middot; New Orleans, LA</div>
+    </div>
+  </div>
+
+  <!-- Voice note: record ~60s on your phone, save as /public/paul-note.m4a and this player appears automatically -->
+  <div class="voice" id="voice" hidden>
+    <div class="voice-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#9FD4F2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg></div>
+    <div class="voice-body">
+      <div class="voice-label">HEAR IT INSTEAD &middot; 60 SECONDS, ONE TAKE</div>
+      <audio controls preload="none" src="/paul-note.m4a"></audio>
+    </div>
+  </div>
+
+  <div class="letter">
+    <p>This is the page where I talk like a person instead of a website.</p>
+    <p>I spent twenty years in IT &mdash; mostly inside big companies that have whole departments for the stuff I now do solo. What I noticed the entire time: the corner shops and one-room restaurants I actually loved going to had <b>none of it</b>. Their websites were broken or embarrassing. Their phones cost triple what they should. Nobody could tell them how they were doing on Google, so nobody did.</p>
+    <p>The industry gave those businesses two options: pay an agency more than rent, or do it yourself at midnight after close. Both options are bad. I started BitBrd because I kept watching good operators pick between them.</p>
+    <p>Here's what I can promise you that no bigger shop can: <b>the person reading your email is the person who builds your site.</b> There is no account manager. When something breaks on a Saturday, you text me and I fix it, because I'm the one who knows where everything is &mdash; I put it there.</p>
+    <p>I also can't take every client, and I won't pretend otherwise. If your project isn't a fit I'll say so on the first call and point you somewhere honest.</p>
+    <div class="sig">&mdash; Paul<span>written at my desk, not generated. Ask me anything: <a href="mailto:hello@bitbrd.com" style="color:var(--sky)">hello@bitbrd.com</a></span></div>
+  </div>
+
+  <div class="about">
+    <h2>About me</h2>
+    <p>I grew up in the suburbs south of Detroit, Michigan, and moved to Arkansas as a teenager &mdash; lived in four different cities across central Arkansas over the years, which is why you'll spot Little Rock businesses in our client list. I visited New Orleans more times than I can count, fell in love with the city the way everybody warns you you will, and finally <b>relocated here in 2024</b>.</p>
+    <p>On the technical side: I specialize in <b>Elixir, its Phoenix web framework, and Astro</b>. Less common tools, exceptionally good at their jobs. Elixir and Phoenix power real-time dashboards and systems that stay up for months without a restart; Astro builds the fastest websites you can ship. They're a big part of why our builds measure the way they do.</p>
+    <p>Before BitBrd, I spent two decades running this stuff at scale: large <b>NetSuite</b> deployments, Docker server farms, fleets of Raspberry Pis in the field, and <b>dozens of POS systems</b> &mdash; many of which I built custom integrations for or rolled out across large deployments. If your register, your kitchen screen, or your back office needs to talk to your website, odds are I've already wired that exact system somewhere.</p>
+    <span class="stack-label">Languages &amp; platforms I build with</span>
+    <div class="tags">
+      <span class="tag tag--hot">Elixir</span><span class="tag tag--hot">Phoenix Framework</span><span class="tag tag--hot">Astro</span><span class="tag">NetSuite</span><span class="tag">Docker</span><span class="tag">Raspberry Pi</span><span class="tag">Linux</span>
+    </div>
+    <span class="stack-label">POS systems I've integrated or deployed</span>
+    <div class="tags">
+      <span class="tag">Shopify POS</span><span class="tag">Square</span><span class="tag">Aloha</span><span class="tag">PAR Brink</span><span class="tag">Revel</span><span class="tag">AVImark</span><span class="tag">+ dozens more</span>
+    </div>
+  </div>
+
+  <div class="reach">
+    <a class="btn btn-p" href="/#contact">Book thirty minutes with me &rarr;</a>
+    <a class="btn btn-g" href="/log">See what I shipped this week</a>
+    <a class="btn btn-g" href="/">&larr; Back to BitBrd</a>
+  </div>
+</div>
+
+<script is:inline>
+  // Show the voice-note player only if the recording actually exists.
+  // (No silent placeholders pretending to be real content.)
+  fetch('/paul-note.m4a', { method: 'HEAD' }).then(function (r) {
+    if (r.ok) document.getElementById('voice').hidden = false;
+  }).catch(function () {});
+</script>
+</body>
+</html>

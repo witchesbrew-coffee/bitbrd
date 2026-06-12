@@ -1,0 +1,119 @@
+---
+import Skyline from '../components/Skyline.astro';
+const title = 'How the Skyline Was Built | BitBrd';
+const description = 'The New Orleans skyline on bitbrd.com, built up in six additions: the flat city, depth layers, hand-drawn landmarks, the bridge, the sky, and 92 lights.';
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href="https://bitbrd.com/drafts" />
+<link rel="icon" href="/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{--navy-900:#082545;--navy-800:#0A1F3D;--sky:#9FD4F2;--sky-light:#CFE9F7;--ink:#0A1628;--cream:#F7FAFD;--text:#E8F2FC;--muted:#8CA3BA;--green:#34D399;--border:rgba(159,212,242,0.15)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--ink);color:var(--text);line-height:1.65}
+.wrap{max-width:980px;margin:auto;padding:60px 24px 80px}
+.eyebrow{font-family:'Press Start 2P',monospace;font-size:10px;color:var(--sky);letter-spacing:0.15em;text-transform:uppercase}
+h1{font-family:'Press Start 2P',monospace;font-size:clamp(1.1rem,3vw,1.7rem);color:var(--cream);margin:16px 0 14px;line-height:1.5}
+.lede{color:var(--muted);max-width:64ch;margin-bottom:10px}
+.lede b{color:var(--text)}
+
+.part{margin:52px 0 0}
+.part-tag{display:flex;align-items:baseline;gap:14px;margin-bottom:4px;flex-wrap:wrap}
+.part-num{font-family:'Press Start 2P',monospace;font-size:11px;color:var(--sky)}
+.part-add{font-family:'Press Start 2P',monospace;font-size:8px;color:var(--green);letter-spacing:0.08em}
+.part-title{font-weight:700;color:var(--cream);font-size:1.05rem;width:100%;margin-top:6px}
+.frame{border:1px solid var(--border);border-radius:8px;overflow:hidden;background:var(--ink);margin-top:10px}
+.frame img{display:block;width:100%;height:auto}
+.part-cap{margin-top:12px;color:var(--muted);font-size:0.94rem;max-width:70ch}
+.part-cap b{color:var(--text)}
+.part-cap code{font-family:monospace;font-size:0.86em;color:var(--sky-light);background:var(--navy-800);padding:1px 6px;border-radius:3px}
+
+/* ── stage filters: each part shows the real SVG with later additions hidden ── */
+.sb2 :global(.lm-cath),.sb2 :global(.lm-dome){display:none}
+.sb2 :global(rect[fill="#3E6B9E"]),.sb2 :global(.cw){display:none}
+.sb2 :global(.clouds),.sb2 :global(.moon),.sb2 :global(.lw){display:none}
+.sb3 :global(rect[fill="#3E6B9E"]),.sb3 :global(.cw){display:none}
+.sb3 :global(.clouds),.sb3 :global(.moon),.sb3 :global(.lw){display:none}
+.sb4 :global(.clouds),.sb4 :global(.moon),.sb4 :global(.lw){display:none}
+
+.final-frame{border-color:rgba(52,211,153,0.4);box-shadow:0 0 40px rgba(52,211,153,0.08)}
+.sheet{margin-top:18px}
+.sheet-label{font-family:'Press Start 2P',monospace;font-size:8px;color:var(--muted);letter-spacing:0.1em;margin-bottom:8px;text-transform:uppercase}
+
+.why{margin-top:54px;padding-top:36px;border-top:1px solid var(--border);color:var(--muted);max-width:66ch}
+.why h2{font-family:'Press Start 2P',monospace;font-size:0.85rem;color:var(--cream);margin-bottom:10px;line-height:1.6}
+.why p{margin-bottom:12px;font-size:0.95rem}
+.why b{color:var(--text)}
+.btns{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;font-weight:600;font-size:0.9rem;border-radius:5px;text-decoration:none}
+.btn-p{background:var(--sky);color:var(--navy-900)}
+.btn-p:hover{background:var(--sky-light)}
+.btn-g{border:1px solid rgba(159,212,242,0.35);color:var(--sky)}
+.btn-g:hover{border-color:var(--sky)}
+a{text-decoration:none;color:inherit}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="eyebrow">BitBrd &middot; behind the build</span>
+  <h1>One skyline, six additions.</h1>
+  <p class="lede">The New Orleans skyline at the bottom of our homepage wasn't generated in one shot. It was built the way you build anything: <b>start plain, add one thing at a time, fix what looks wrong.</b> Every stage below is the real artwork, rendered live with the later additions switched off. Nothing here is a screenshot except part one.</p>
+
+  <div class="part">
+    <div class="part-tag"><span class="part-num">PART 1</span><span class="part-add">+ A CITY, ANY CITY</span><span class="part-title">The starting point: a generated skyline</span></div>
+    <div class="frame"><img src="/drafts/v1-first-concept.png" alt="The first skyline draft: a generic pixel city" loading="lazy" width="1440" height="360" /></div>
+    <p class="part-cap">A small program we wrote draws the city: <b>every building is a rectangle</b> with constrained randomness. No two neighbors share a height, no building gets too wide, antenna masts land every so often. The randomness is <b>seeded</b>, so the same city regenerates identically every run, which makes it editable like code instead of luck. One problem: this is Anywhere, USA. We're not in Anywhere. We're in New Orleans.</p>
+  </div>
+
+  <div class="part">
+    <div class="part-tag"><span class="part-num">PART 2</span><span class="part-add">+ DEPTH</span><span class="part-title">Three layers, three seeds</span></div>
+    <div class="frame sb2"><Skyline /></div>
+    <p class="part-cap">The flat wall becomes a stage set: <b>back, middle, and front rows</b>, each in its own paint tone. Darker means closer, the same trick theater backdrops have used for centuries. Each layer runs on its <b>own random seed</b>, so we can rework one row without moving a single pixel in the other two. The gaps you see are deliberate: two of them are holding seats for the landmarks.</p>
+  </div>
+
+  <div class="part">
+    <div class="part-tag"><span class="part-num">PART 3</span><span class="part-add">+ THE LANDMARKS</span><span class="part-title">St. Louis Cathedral and the Superdome, drawn by hand</span></div>
+    <div class="frame sb3"><Skyline /></div>
+    <p class="part-cap">The two shapes that make it New Orleans. Neither is generated: both were <b>drawn rectangle by rectangle from photographs</b> of the real buildings. The cathedral is about two dozen rectangles and triangles: facade, two side towers with cones, the tall center steeple, a cross on top. Its proportions took several passes to get right; the side towers kept coming out too tall against the center one. The Superdome is a stack of seven shrinking slabs that reads as a curve from across the page.</p>
+  </div>
+
+  <div class="part">
+    <div class="part-tag"><span class="part-num">PART 4</span><span class="part-add">+ THE BRIDGE</span><span class="part-title">The Crescent City Connection, tucked into the city</span></div>
+    <div class="frame sb4"><Skyline /></div>
+    <p class="part-cap">The first version of the bridge was pasted on top of the city, and it floated there like a sticker. The fix isn't more drawing, it's <b>paint order</b>: in vector graphics, whatever is drawn later sits in front. We moved the bridge's deck earlier in the draw order, twice, until the front rows of buildings overlap it and the deck disappears <b>into</b> the skyline, the way it does when you actually look up Canal Street.</p>
+  </div>
+
+  <div class="part">
+    <div class="part-tag"><span class="part-num">PART 5</span><span class="part-add">+ AUDITIONING A SKY</span><span class="part-title">The cloud sketches</span></div>
+    <div class="frame"><img src="/drafts/clouds-sketch-sheet.png" alt="Candidate cloud shapes sketched onto the finished city" loading="lazy" width="1440" height="1140" /></div>
+    <p class="part-cap">The sky earned its simplicity the hard way. The very first clouds were <b>square</b>, and they looked like furniture. So candidates got sketched directly onto the finished city: icon clouds, 8-bit stepped clouds, lozenges, big cumulus stacks. Every one of them fought the buildings for attention. The shape that won isn't even on this sheet: <b>thin high-altitude wisps</b> in a color lighter than any building, barely there at all. You'll see them land below.</p>
+  </div>
+
+  <div class="part">
+    <div class="part-tag"><span class="part-num">PART 6</span><span class="part-add">+ THE SKY THAT WON + 92 LIGHTS</span><span class="part-title">The city wakes up</span></div>
+    <div class="frame final-frame"><Skyline /></div>
+    <p class="part-cap">The finished scene. The wisps drift on a <b>320-second loop</b> with one static pixel moon parked above the bridge, and every window is its own tiny animation: cycle lengths run anywhere from <b>7 to 26 seconds</b>, so the blinking pattern never visibly repeats. One detail we're disproportionately proud of: every light starts at a <b>negative delay</b>, meaning each one is already mid-cycle the instant the page loads. Without that trick the city arrives dark and switches on like an office at 8am. With it, the city was already alive before you got here. (And if your device asks for reduced motion, everything politely holds still.)</p>
+  </div>
+
+  <div class="why">
+    <h2>Why walk through it?</h2>
+    <p>Because the result looks effortless, and it wasn't. The finished skyline weighs <b>3.3&nbsp;KB</b> and runs on zero JavaScript, which you can read more about at <a href="/skyline" style="color:var(--sky)">/skyline</a>. But the number isn't the point. The point is that someone made <b>decisions</b>: which landmarks earn a spot, how a bridge should sit in a city, which clouds to throw away.</p>
+    <p>Every site we build gets this treatment. You usually just see the last frame. This page is the other five.</p>
+  </div>
+
+  <div class="btns">
+    <a class="btn btn-p" href="/#contact">Get this kind of attention &rarr;</a>
+    <a class="btn btn-g" href="/skyline">The 3.3 KB story</a>
+    <a class="btn btn-g" href="/">&larr; Back to BitBrd</a>
+  </div>
+</div>
+</body>
+</html>
