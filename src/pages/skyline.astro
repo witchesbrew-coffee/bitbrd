@@ -57,7 +57,7 @@ h1{font-family:'Press Start 2P',monospace;font-size:clamp(1.1rem,3vw,1.7rem);col
 <div class="wrap">
   <span class="eyebrow">BitBrd &middot; under the hood</span>
   <h1>This skyline is 3.3 kilobytes.</h1>
-  <p class="lede">The living New Orleans skyline at the bottom of our site &mdash; cathedral, Superdome, the Crescent City Connection, 92 windows blinking on their own schedules &mdash; is smaller than a single emoji image. Watch it assemble:</p>
+  <p class="lede">The living New Orleans skyline at the bottom of our site is smaller than a single emoji image. Cathedral, Superdome, the Crescent City Connection, 92 windows blinking on their own schedules. Watch it assemble:</p>
 
   <div class="stage play" id="stage"><Skyline /></div>
 
@@ -78,9 +78,9 @@ h1{font-family:'Press Start 2P',monospace;font-size:clamp(1.1rem,3vw,1.7rem);col
 
   <div class="how">
     <h2>How it works, in plain English</h2>
-    <p>There&rsquo;s no image file. The whole scene is <b>drawn in the page&rsquo;s own code</b> &mdash; &ldquo;rectangle here, this size, this navy&rdquo; about three hundred times. A small program we wrote generates the city: building widths and heights come from constrained randomness (no two neighbors the same height, no flat monoliths), and the landmarks &mdash; St.&nbsp;Louis Cathedral, the Superdome, the bridge &mdash; are drawn by hand from photographs.</p>
-    <p>The randomness is <b>seeded</b>: the same city regenerates identically every time, which means we can edit one layer without disturbing a pixel of the rest. Every window light is its own tiny rectangle with its own on/off cycle &mdash; 7 to 26 seconds, scattered phases &mdash; so the pattern never visibly repeats.</p>
-    <p>The animations run as CSS on your device&rsquo;s <b>graphics chip</b>, off the main thread &mdash; they can&rsquo;t make the page stutter. A looping video of this same scene would cost a thousand times more data.</p>
+    <p>There&rsquo;s no image file. The whole scene is <b>drawn in the page&rsquo;s own code</b>: &ldquo;rectangle here, this size, this navy&rdquo; about three hundred times. A small program we wrote generates the city: building widths and heights come from constrained randomness (no two neighbors the same height, no flat monoliths), and the landmarks (St.&nbsp;Louis Cathedral, the Superdome, the bridge) are drawn by hand from photographs.</p>
+    <p>The randomness is <b>seeded</b>: the same city regenerates identically every time, which means we can edit one layer without disturbing a pixel of the rest. Every window light is its own tiny rectangle with its own on/off cycle (7 to 26 seconds, scattered phases), so the pattern never visibly repeats.</p>
+    <p>The animations run as CSS on your device&rsquo;s <b>graphics chip</b>, off the main thread, so they can&rsquo;t make the page stutter. A looping video of this same scene would cost a thousand times more data.</p>
     <h2>Why it matters for your business</h2>
     <p>This is the standard your site gets. We build everything this way, right down to the decoration. Google ranks fast sites higher, and that is a big part of how our clients keep winning local search.</p>
   </div>
