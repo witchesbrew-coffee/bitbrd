@@ -1,0 +1,150 @@
+---
+const title = 'The Homepage That Ends in a Swamp | BitBrd';
+const description = 'How we built the animated bayou at the bottom of witchesbrew.co: real tree silhouettes, a moonlit waterline, fireflies on their own clocks, and alligators that surface when they feel like it.';
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href="https://bitbrd.com/swamp" />
+<link rel="icon" href="/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{--navy-900:#082545;--navy-800:#0A1F3D;--sky:#9FD4F2;--sky-light:#CFE9F7;--ink:#0A1628;--cream:#F7FAFD;--text:#E8F2FC;--muted:#8CA3BA;--green:#34D399;--amber:#E8C547;--border:rgba(159,212,242,0.15);--border-strong:rgba(159,212,242,0.35)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--ink);color:var(--text);line-height:1.65}
+.wrap{max-width:1020px;margin:auto;padding:60px 24px 80px}
+.eyebrow{font-family:'Press Start 2P',monospace;font-size:10px;color:var(--sky);letter-spacing:0.15em;text-transform:uppercase}
+h1{font-family:'Press Start 2P',monospace;font-size:clamp(1.1rem,3vw,1.7rem);color:var(--cream);margin:16px 0 14px;line-height:1.55}
+.lede{color:var(--muted);max-width:64ch;margin-bottom:26px}
+.lede b{color:var(--text)}
+a{text-decoration:none;color:inherit}
+.statrow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:6px 0 30px}
+.stat{background:var(--navy-800);border:1px solid var(--border);border-radius:8px;padding:18px;text-align:center}
+.stat b{display:block;font-family:'Press Start 2P',monospace;font-size:1.05rem;color:var(--green);margin-bottom:8px}
+.stat span{font-size:0.8rem;color:var(--muted)}
+.sec{margin-top:64px}
+.sec-tag{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;flex-wrap:wrap}
+.sec-num{font-family:'Press Start 2P',monospace;font-size:11px;color:var(--sky)}
+.sec h2{font-family:'Press Start 2P',monospace;font-size:clamp(0.85rem,1.8vw,1.05rem);color:var(--cream);line-height:1.6;margin-bottom:14px}
+.sec p{color:var(--muted);max-width:68ch;margin-bottom:13px;font-size:0.97rem}
+.sec b{color:var(--text)}
+.frame{border:1px solid var(--border-strong);border-radius:10px;overflow:hidden;background:var(--ink);margin:18px 0 12px;box-shadow:0 24px 60px rgba(8,37,69,0.5)}
+.frame img,.frame video{display:block;width:100%;height:auto}
+.cap{font-size:0.84rem;color:var(--muted);max-width:70ch}
+.cap b{color:var(--text)}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.phone{width:252px;background:#0B1220;border:2px solid #2A3A52;border-radius:34px;padding:10px;box-shadow:0 30px 70px rgba(8,37,69,0.65);position:relative;margin:22px auto 8px}
+.phone::before{content:'';position:absolute;top:18px;left:50%;transform:translateX(-50%);width:74px;height:18px;background:#0B1220;border-radius:10px;z-index:2}
+.phone-screen{border-radius:24px;overflow:hidden}
+.phone-screen img{display:block;width:100%;height:auto}
+.phone-tag{text-align:center;margin-top:12px;font-family:'Press Start 2P',monospace;font-size:8px;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase}
+.phone-tag b{color:var(--green)}
+.tl{margin-top:10px}
+.tl-row{display:grid;grid-template-columns:110px 1fr;gap:24px;padding:20px 0;border-bottom:1px solid var(--border)}
+.tl-date{font-family:'Press Start 2P',monospace;font-size:9px;color:var(--green);line-height:1.9;padding-top:3px}
+.tl-row h3{font-size:1rem;font-weight:700;color:var(--cream);margin-bottom:4px}
+.tl-row p{font-size:0.92rem;color:var(--muted);margin:0;max-width:64ch}
+.tl-row b{color:var(--text)}
+.btns{display:flex;gap:14px;flex-wrap:wrap;margin-top:44px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;font-weight:600;font-size:0.9rem;border-radius:5px;text-decoration:none}
+.btn-p{background:var(--sky);color:var(--navy-900)}
+.btn-p:hover{background:var(--sky-light)}
+.btn-g{border:1px solid rgba(159,212,242,0.35);color:var(--sky)}
+.btn-g:hover{border-color:var(--sky)}
+@media(max-width:820px){.statrow{grid-template-columns:repeat(2,1fr)}.duo{grid-template-columns:1fr}.tl-row{grid-template-columns:1fr;gap:6px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="eyebrow">BitBrd &middot; build story</span>
+  <h1>The homepage that ends in a swamp.</h1>
+  <p class="lede">Most websites end in a wall of footer links. Witches Brew Coffee Co.'s homepage ends at a <b>Louisiana bayou at night</b>: moss hanging off the oaks, fireflies drifting over still water, and alligators that surface when they feel like it. No stock video, no animation library. It's all drawn and coded by hand, and this page shows how it went together, one layer at a time.</p>
+
+  <div class="statrow">
+    <div class="stat"><b>2</b><span>real tree photographs, cut to silhouette</span></div>
+    <div class="stat"><b>3</b><span>alligators, each on its own clock</span></div>
+    <div class="stat"><b>0</b><span>stock footage or animation libraries</span></div>
+    <div class="stat"><b>80%</b><span>of a phone screen, so you can sit with it</span></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">01</span></div>
+    <h2>Start with the night</h2>
+    <div class="frame"><img src="/builds/swamp-night.jpg" alt="A dark green night sky with a glowing moon and scattered fireflies" loading="lazy" /></div>
+    <p class="cap">The empty stage. A night sky washed in the shop's deep forest green, a moon with a soft halo, and <b>a dozen fireflies</b>, each wandering its own slow loop. No two share a flight path or a speed, so the sky never repeats itself.</p>
+    <p>One detail we fought for: the moon's glow is painted into the scene rather than generated by a browser effect. Early versions used the easy way and the glow would flicker off for a frame at a time on some machines. Painting it costs nothing and never blinks.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">02</span></div>
+    <h2>Hang the trees</h2>
+    <div class="frame"><img src="/builds/swamp-trees.jpg" alt="Moss-draped oak silhouettes hanging over the night sky, framing the moon" loading="lazy" /></div>
+    <p class="cap">These are <b>real oaks</b>. The owner supplied photographs of moss-draped trees; we cut the silhouettes out, sharpened the moss strands so they stay crisp at any size, and tinted them to the exact ink of the page so they sit inside the night instead of pasted on top. The moon now glows through the branches, which was a happy accident we kept.</p>
+    <p>The low branch on the right is hung deliberately: its moss reaches almost to where the water will be. Composition first, then code.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">03</span></div>
+    <h2>Fill the water</h2>
+    <div class="frame"><img src="/builds/swamp-water.jpg" alt="The bayou waterline with cypress knees and the moon's reflection on the water" loading="lazy" /></div>
+    <p class="cap">A still bayou rises to meet the trees. <b>Cypress knees</b> break the surface in two clusters, low mist drifts along the far bank, and the moon lays a soft reflection on the water directly under its side of the sky, with little glints that brighten and fade like the surface is actually moving.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">04</span></div>
+    <h2>Let the alligators in</h2>
+    <div class="frame"><img src="/builds/swamp-gator.jpg" alt="An alligator surfaced in the moonlit water, eyes glowing, brightened for visibility" loading="lazy" /></div>
+    <p class="cap">Brightened here so you can see him clearly. On the real page he's subtler: a dark hump and two glowing eyes at the waterline, which is exactly how you'd actually spot one at night.</p>
+    <p>The gators run on <b>their own random clocks</b>. Each one picks a spot anywhere in the water, drifts there unseen, rises over a few seconds, lingers between five and twenty seconds, then sinks and disappears for up to half a minute. Closer gators render bigger. Each one claims its patch of water when it surfaces, so two never overlap. And there's a third gator most visitors will never see: he only comes up about <b>15% of the time</b>.</p>
+    <p>Watch a real stretch of it, uncut. Two surface in this take:</p>
+    <div class="frame"><video autoplay muted loop playsinline preload="metadata" poster="/builds/swamp-live-poster.jpg" width="1440" height="720"><source src="/builds/swamp-live.mp4" type="video/mp4" /><img src="/builds/swamp-live-poster.jpg" alt="The live swamp scene with alligators surfacing" /></video></div>
+    <p class="cap">Forty seconds of the live homepage. Fireflies wander, mist drifts, and the gators come and go on timers no one scripted. Every visit plays differently.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">05</span></div>
+    <h2>Clear the stage</h2>
+    <div class="frame"><img src="/builds/swamp-full.jpg" alt="The finished swamp scene, complete with trees, water, and wildlife" loading="lazy" /></div>
+    <p class="cap">The finished scene. One more piece of manners: the site's floating <b>Order Pickup button</b> quietly slides off-screen when the swamp comes into view, then returns when you scroll back up. Nothing sits on top of the bayou. The scene is the destination, and the page knows it.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">06</span></div>
+    <h2>The phone gets its own cut</h2>
+    <div class="duo">
+      <div>
+        <p>A scene composed for a wide screen dies on a narrow one, so the phone version is <b>reframed, not shrunk</b>. The swamp takes 80% of the screen height. The waterline scene is enlarged and anchored so the moon's reflection stays in frame, and the gators render almost twice as large so they read at arm's length.</p>
+        <p>They also know where the phone's edges are. The visible stretch of water on a phone is a narrow window into the wide scene, so the gators only surface inside it. Nobody performs to an empty theater.</p>
+      </div>
+      <div>
+        <div class="phone"><div class="phone-screen"><img src="/builds/swamp-mobile.jpg" alt="The swamp scene on a phone: taller, bigger water, gators visible" loading="lazy" /></div></div>
+        <div class="phone-tag">the mobile swamp &middot; <b>80% of the screen</b></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">07</span></div>
+    <h2>The build log</h2>
+    <div class="tl">
+      <div class="tl-row"><div class="tl-date">JUL 1</div><div><h3>Two directions, one night</h3><p>Two full homepage concepts built and put side by side: a city skyline and this bayou. The owner picked the swamp. The first version drew the trees in code; they looked like code.</p></div></div>
+      <div class="tl-row"><div class="tl-date">JUL 1</div><div><h3>Real trees replace drawn ones</h3><p>The owner sent photographs of moss-draped oaks. We cut, sharpened, and tinted them into the scene the same night. Immediate difference: the moss reads like moss.</p></div></div>
+      <div class="tl-row"><div class="tl-date">JUL 2</div><div><h3>The swamp moves to the footer</h3><p>The scene started as the hero at the top of the page. It worked better as the ending. The logo took the top, the bayou took the bottom, and the page finally had an arc: walk in the front door, leave through the swamp.</p></div></div>
+      <div class="tl-row"><div class="tl-date">JUL 2</div><div><h3>Gators go feral</h3><p>Fixed schedules replaced with random ones. Surfacing anywhere in the water, depth scaling, the no-overlap rule, and the rare third gator all landed the same day, along with the phone reframe.</p></div></div>
+      <div class="tl-row"><div class="tl-date">TODAY</div><div><h3>Live on the homepage</h3><p>Scroll to the bottom of <b>witchesbrew.co</b> and wait a moment. That's the demo.</p></div></div>
+    </div>
+  </div>
+
+  <div class="btns">
+    <a class="btn btn-p" href="https://www.witchesbrew.co" target="_blank" rel="noopener">Visit the swamp &rarr;</a>
+    <a class="btn btn-g" href="/">Back to BitBrd</a>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,153 @@
+---
+const title = 'The Menu With a Secret | BitBrd';
+const description = 'Every 18 seconds the Witches Brew menu turns into something else: a title that flickers, a lightning storm, a blood eclipse, and a hidden door to a secret drink page. The build story.';
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href="https://bitbrd.com/vvitch" />
+<link rel="icon" href="/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{--navy-900:#082545;--navy-800:#0A1F3D;--sky:#9FD4F2;--sky-light:#CFE9F7;--ink:#0A1628;--cream:#F7FAFD;--text:#E8F2FC;--muted:#8CA3BA;--green:#34D399;--border:rgba(159,212,242,0.15);--border-strong:rgba(159,212,242,0.35)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--ink);color:var(--text);line-height:1.65}
+.wrap{max-width:1020px;margin:auto;padding:60px 24px 80px}
+.eyebrow{font-family:'Press Start 2P',monospace;font-size:10px;color:var(--sky);letter-spacing:0.15em;text-transform:uppercase}
+h1{font-family:'Press Start 2P',monospace;font-size:clamp(1.1rem,3vw,1.7rem);color:var(--cream);margin:16px 0 14px;line-height:1.55}
+.lede{color:var(--muted);max-width:64ch;margin-bottom:26px}
+.lede b{color:var(--text)}
+a{text-decoration:none;color:inherit}
+.statrow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:6px 0 30px}
+.stat{background:var(--navy-800);border:1px solid var(--border);border-radius:8px;padding:18px;text-align:center}
+.stat b{display:block;font-family:'Press Start 2P',monospace;font-size:1.05rem;color:var(--green);margin-bottom:8px}
+.stat span{font-size:0.8rem;color:var(--muted)}
+.sec{margin-top:64px}
+.sec-tag{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;flex-wrap:wrap}
+.sec-num{font-family:'Press Start 2P',monospace;font-size:11px;color:var(--sky)}
+.sec h2{font-family:'Press Start 2P',monospace;font-size:clamp(0.85rem,1.8vw,1.05rem);color:var(--cream);line-height:1.6;margin-bottom:14px}
+.sec p{color:var(--muted);max-width:68ch;margin-bottom:13px;font-size:0.97rem}
+.sec b{color:var(--text)}
+.frame{border:1px solid var(--border-strong);border-radius:10px;overflow:hidden;background:var(--ink);margin:18px 0 12px;box-shadow:0 24px 60px rgba(8,37,69,0.5)}
+.frame img,.frame video{display:block;width:100%;height:auto}
+.cap{font-size:0.84rem;color:var(--muted);max-width:70ch}
+.cap b{color:var(--text)}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.duo .frame{margin-top:0}
+.phone{width:252px;background:#0B1220;border:2px solid #2A3A52;border-radius:34px;padding:10px;box-shadow:0 30px 70px rgba(8,37,69,0.65);position:relative;margin:22px auto 8px}
+.phone::before{content:'';position:absolute;top:18px;left:50%;transform:translateX(-50%);width:74px;height:18px;background:#0B1220;border-radius:10px;z-index:2}
+.phone-screen{border-radius:24px;overflow:hidden}
+.phone-screen img{display:block;width:100%;height:auto}
+.phone-tag{text-align:center;margin-top:12px;font-family:'Press Start 2P',monospace;font-size:8px;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase}
+.tl{margin-top:10px}
+.tl-row{display:grid;grid-template-columns:110px 1fr;gap:24px;padding:20px 0;border-bottom:1px solid var(--border)}
+.tl-date{font-family:'Press Start 2P',monospace;font-size:9px;color:var(--green);line-height:1.9;padding-top:3px}
+.tl-row h3{font-size:1rem;font-weight:700;color:var(--cream);margin-bottom:4px}
+.tl-row p{font-size:0.92rem;color:var(--muted);margin:0;max-width:64ch}
+.tl-row b{color:var(--text)}
+.btns{display:flex;gap:14px;flex-wrap:wrap;margin-top:44px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;font-weight:600;font-size:0.9rem;border-radius:5px;text-decoration:none}
+.btn-p{background:var(--sky);color:var(--navy-900)}
+.btn-p:hover{background:var(--sky-light)}
+.btn-g{border:1px solid rgba(159,212,242,0.35);color:var(--sky)}
+.btn-g:hover{border-color:var(--sky)}
+@media(max-width:820px){.statrow{grid-template-columns:repeat(2,1fr)}.duo{grid-template-columns:1fr}.tl-row{grid-template-columns:1fr;gap:6px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="eyebrow">BitBrd &middot; build story</span>
+  <h1>The menu with a secret.</h1>
+  <p class="lede">The Witches Brew menu page looks like a menu. Prices, drinks, a moon in the corner. But stand on it a moment and the sky turns: the title flickers into something older, lightning rolls across the masthead, the fireflies scatter, and the moon slides into a <b>blood eclipse</b>. Seven point eight seconds later, everything comes home like nothing happened. This is the build story of a secret menu, and of the door that leads to it.</p>
+
+  <div class="statrow">
+    <div class="stat"><b>18s</b><span>between hauntings (6+6+6)</span></div>
+    <div class="stat"><b>7.8s</b><span>the storm lasts, then the page recovers</span></div>
+    <div class="stat"><b>1</b><span>hidden door, waiting under the footer</span></div>
+    <div class="stat"><b>0</b><span>mentions of any of this, anywhere on the site</span></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">01</span></div>
+    <h2>A perfectly normal menu</h2>
+    <div class="frame"><img src="/builds/vvitch-calm.jpg" alt="The Witches Brew menu page masthead in its calm state: moon, stars, fireflies" loading="lazy" /></div>
+    <p class="cap">The menu at rest. Stars drift almost imperceptibly, fireflies wander the masthead, a shooting star falls every so often. Nothing here suggests the page is anything but a menu, which is the point.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">02</span></div>
+    <h2>Every 18 seconds, the title forgets its name</h2>
+    <div class="frame"><img src="/builds/vvitch-title.jpg" alt="The menu title mid-haunt, reading VVITCH in the same serif type" loading="lazy" /></div>
+    <p class="cap">The word <b>Menu</b> flickers out like a bad bulb and this takes its place, set in the same type, spelled with two V's the way the old film posters did it. The cycle runs every 18 seconds. Six plus six plus six. Nobody at the shop will confirm that's on purpose.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">03</span></div>
+    <h2>The storm</h2>
+    <div class="frame"><video autoplay muted loop playsinline preload="metadata" poster="/builds/vvitch-storm-poster.jpg" width="1440" height="720"><source src="/builds/vvitch-storm.mp4" type="video/mp4" /><img src="/builds/vvitch-lightning.jpg" alt="The menu masthead mid-storm: lightning wash, VVITCH title, eclipsed moon" /></video></div>
+    <p class="cap">The full haunting, captured live. While the title holds its other name, <b>lightning strikes in irregular double-flashes</b>, the stars fade out, and every firefly darts off-screen in its own direction. When the 7.8 seconds are up, the sky settles, the fireflies drift back, and the word Menu returns.</p>
+    <div class="duo" style="margin-top:22px">
+      <div>
+        <p>And the moon doesn't just watch. Over the length of the storm a shadow slides across the disc until only a thin <b>blood-red rim</b> survives. It's the shop's full-moon logo having its own private eclipse, timed to the haunting, every 18 seconds, forever.</p>
+        <p>The first version of this eclipse had a bug where a sliver of shadow peeked out beside the moon on the live site. The fix made it better than the original: now the shadow is invisible until the storm calls it, and totality glows red at the edge.</p>
+      </div>
+      <div class="frame"><img src="/builds/vvitch-eclipse.jpg" alt="Close-up of the eclipsed moon: dark disc with a blood-red rim" loading="lazy" /></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">04</span></div>
+    <h2>The little door</h2>
+    <div class="frame"><img src="/builds/vvitch-door.jpg" alt="The menu page footer with a faint arched door outline below the address" loading="lazy" /></div>
+    <p class="cap">Scroll past the last price, past the address, and there's this: a faint arched door, drawn in a whisper of gold. Shown brighter here than it appears on the page. Most people scroll right past it, and that's by design.</p>
+    <p>Right now the door is <b>dormant on purpose</b>. It leads to a secret drink, and the drink isn't ready. The shop is still perfecting the recipe, so the door sits there, dimmed, waiting. When the drink ships, the door wakes up. We think a secret that makes you wait is a better secret.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">05</span></div>
+    <h2>What happens when it opens</h2>
+    <div class="frame"><video autoplay muted loop playsinline preload="metadata" poster="/builds/vvitch-rite-poster.jpg" width="1440" height="720"><source src="/builds/vvitch-rite.mp4" type="video/mp4" /><img src="/builds/vvitch-rite-poster.jpg" alt="The door rite: the page darkens, a stone doorway appears and opens onto candlelight" /></video></div>
+    <p class="cap">The rite, recorded from the working build. Click the door and the whole page dims. A stone doorway rises out of the dark, its planked leaves swing open onto <b>candlelight</b>, and then the darkness spills out of the doorway and takes the page with it. When it clears, you're somewhere else.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">06</span></div>
+    <h2>The goat behind the door</h2>
+    <div class="duo">
+      <div>
+        <div class="frame" style="margin-top:0"><img src="/builds/vvitch-bp.jpg" alt="The Black Phillip page: You Found The Door, a goat's story, and a spoken question" loading="lazy" /></div>
+        <p class="cap">Where the door leads: a page named for a certain goat. It exists on the shop's website today, unlinked from every menu and every nav bar. Search engines are told to ignore it. You cannot stumble onto it; you have to be shown, or you have to find it.</p>
+      </div>
+      <div>
+        <div class="phone"><div class="phone-screen"><img src="/builds/vvitch-bp-mobile.jpg" alt="The Black Phillip page on a phone" loading="lazy" /></div></div>
+        <div class="phone-tag">the page nobody links to</div>
+      </div>
+    </div>
+    <p>The page teaches you a <b>spoken password</b>: a specific answer to the goat's famous question. Say it to a barista and the secret drink is yours. Ask wrong and the staff have a scripted line that gives away nothing. We're not printing the password here. Some things you earn.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">07</span></div>
+    <h2>The build log</h2>
+    <div class="tl">
+      <div class="tl-row"><div class="tl-date">JUN 28</div><div><h3>The goat's page goes live</h3><p>Built, published, unlinked, and hidden from search in one evening: the page, the drink's story, the password protocol, and a deflection line for the baristas.</p></div></div>
+      <div class="tl-row"><div class="tl-date">JUN 28</div><div><h3>The first haunt</h3><p>The menu title learns its trick: a flicker to <b>VVITCH</b> and back, every 18 seconds. Subtle enough that most people doubt they saw it. That doubt is the hook.</p></div></div>
+      <div class="tl-row"><div class="tl-date">JUL 2</div><div><h3>The haunt becomes a storm</h3><p>The owner asked for three times the drama. The flicker grew into the full 7.8-second storm: lightning, fleeing fireflies, and the blood eclipse, all recovering to a calm page like nothing happened.</p></div></div>
+      <div class="tl-row"><div class="tl-date">JUL 2</div><div><h3>The door goes dormant, deliberately</h3><p>The secret drink needs more test batches, so the door is visible and locked. The mechanism is finished and waiting on a recipe, which is the correct order of operations for a coffee shop.</p></div></div>
+      <div class="tl-row"><div class="tl-date">TODAY</div><div><h3>Haunting on schedule</h3><p>Open the menu at <b>witchesbrew.co</b> and wait 18 seconds. Watch the moon.</p></div></div>
+    </div>
+  </div>
+
+  <div class="btns">
+    <a class="btn btn-p" href="https://www.witchesbrew.co/pages/menu" target="_blank" rel="noopener">Watch the menu turn &rarr;</a>
+    <a class="btn btn-g" href="/">Back to BitBrd</a>
+  </div>
+</div>
+</body>
+</html>
