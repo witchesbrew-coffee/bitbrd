@@ -1,0 +1,458 @@
+---
+const title = 'The Website That Knows What Night It Is | BitBrd';
+const description = 'A living sky built for Witches Brew Coffee Co.: the homepage re-skins itself for every sabbat, full moon, dark moon and New Orleans holiday, floats a true-phase moon over the everyday hero, promotes calendar events on their own hero, and deals every visitor a three-card tarot spread wired to the menu. All computed in the browser, all SEO-safe.';
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href="https://bitbrd.com/living-sky" />
+<link rel="icon" href="/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700&family=Cinzel:wght@500;600&family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:ital@1&display=swap" rel="stylesheet" />
+<style is:global>
+:root{--navy-900:#082545;--navy-800:#0A1F3D;--sky:#9FD4F2;--sky-light:#CFE9F7;--ink:#0A1628;--cream:#F7FAFD;--text:#E8F2FC;--muted:#8CA3BA;--green:#34D399;--amber:#E8C547;--rose:#E08D79;--border:rgba(159,212,242,0.15);--border-strong:rgba(159,212,242,0.35)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--ink);color:var(--text);line-height:1.65}
+.wrap{max-width:1020px;margin:auto;padding:60px 24px 80px}
+.eyebrow{font-family:'Press Start 2P',monospace;font-size:10px;color:var(--sky);letter-spacing:0.15em;text-transform:uppercase}
+h1{font-family:'Press Start 2P',monospace;font-size:clamp(1.1rem,3vw,1.7rem);color:var(--cream);margin:16px 0 14px;line-height:1.55}
+.lede{color:var(--muted);max-width:64ch;margin-bottom:26px}
+.lede b{color:var(--text)}
+a{text-decoration:none;color:inherit}
+
+.statrow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:6px 0 30px}
+.stat{background:var(--navy-800);border:1px solid var(--border);border-radius:8px;padding:18px;text-align:center}
+.stat b{display:block;font-family:'Press Start 2P',monospace;font-size:1.05rem;color:var(--green);margin-bottom:8px}
+.stat span{font-size:0.8rem;color:var(--muted)}
+
+.sec{margin-top:64px}
+.sec-tag{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;flex-wrap:wrap}
+.sec-num{font-family:'Press Start 2P',monospace;font-size:11px;color:var(--sky)}
+.sec h2{font-family:'Press Start 2P',monospace;font-size:clamp(0.85rem,1.8vw,1.05rem);color:var(--cream);line-height:1.6;margin-bottom:14px}
+.sec p{color:var(--muted);max-width:68ch;margin-bottom:13px;font-size:0.97rem}
+.sec b{color:var(--text)}
+.sec code{font-family:monospace;font-size:0.87em;color:var(--sky-light);background:var(--navy-800);padding:1px 6px;border-radius:3px}
+
+.frame{border:1px solid var(--border-strong);border-radius:10px;overflow:hidden;background:#05070a;margin:18px 0 12px;box-shadow:0 24px 60px rgba(8,37,69,0.5)}
+.cap{font-size:0.84rem;color:var(--muted);max-width:70ch}
+.cap b{color:var(--text)}
+
+/* ===== the live sky vignette (a real recreation, running in the page) ===== */
+.sky{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:#05070a;transition:background 1.1s ease;font-family:'Cinzel',Georgia,serif}
+.sky *{box-sizing:border-box}
+.sky-stars{position:absolute;inset:0;pointer-events:none;opacity:.85}
+.sky-star{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;animation:skyTw 3.4s ease-in-out infinite}
+@keyframes skyTw{0%,100%{opacity:.25}50%{opacity:.95}}
+/* the moon is now an SVG lit-crescent, not a sliding disc */
+.sky-moon{position:absolute;top:10%;right:10%;width:78px;height:78px;pointer-events:none;z-index:2;transition:filter 1s}
+.sky-moon svg{width:100%;height:100%;display:block;overflow:visible}
+.sky-fx{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.sky-in{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 6%;z-index:3}
+.sky-eb{font-size:clamp(.5rem,1.5vw,.72rem);letter-spacing:.34em;text-transform:uppercase;color:var(--acc,#e8d5a3);margin-bottom:.5rem;text-shadow:0 2px 12px rgba(0,0,0,.8)}
+.sky-h{font-family:'Cinzel Decorative',serif;font-size:clamp(1.5rem,5vw,3rem);color:#f7f0e2;line-height:1.05;text-shadow:0 3px 22px rgba(0,0,0,.85);margin-bottom:.5rem}
+.sky-lore{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(.9rem,2.2vw,1.25rem);color:var(--acc2,#e8dfce);max-width:30ch;text-shadow:0 2px 14px rgba(0,0,0,.8);margin-bottom:1.1rem}
+.sky-cta{display:inline-block;font-family:'Cinzel',serif;font-size:clamp(.6rem,1.6vw,.78rem);letter-spacing:.18em;text-transform:uppercase;
+ color:var(--acc,#e8d5a3);border:1px solid var(--acc,#c9a96e);border-radius:3px;padding:.6em 1.3em;background:rgba(0,0,0,.25)}
+/* fx particles — sabbat weather */
+.p{position:absolute;top:-8%;will-change:transform,opacity}
+.p.ember{width:4px;height:4px;border-radius:50%;background:var(--acc,#e8b45a);box-shadow:0 0 6px 1px var(--acc,#e8b45a);top:auto;bottom:-6%;animation:pEmber linear infinite}
+@keyframes pEmber{0%{transform:translateY(0);opacity:0}12%{opacity:.9}100%{transform:translateY(-108vh);opacity:0}}
+.p.petal{width:9px;height:9px;background:var(--acc,#e6a6c6);border-radius:80% 12% 80% 12%;opacity:.85;animation:pPetal linear infinite}
+@keyframes pPetal{0%{transform:translate(0,0) rotate(0)}25%{transform:translate(26px,26vh) rotate(90deg)}50%{transform:translate(-20px,52vh) rotate(180deg)}75%{transform:translate(24px,78vh) rotate(270deg)}100%{transform:translate(-14px,108vh) rotate(360deg);opacity:.2}}
+.p.leaf{width:11px;height:8px;background:var(--acc,#c9702e);border-radius:0 90% 0 90%;opacity:.9;animation:pLeaf linear infinite}
+@keyframes pLeaf{0%{transform:translate(0,0) rotate(0)}50%{transform:translate(22px,54vh) rotate(200deg)}100%{transform:translate(-10px,108vh) rotate(400deg);opacity:.25}}
+.p.frost{width:4px;height:4px;border-radius:50%;background:#dbe9f5;box-shadow:0 0 5px #cfe1f2;opacity:.9;animation:pFrost linear infinite}
+@keyframes pFrost{0%{transform:translate(0,0)}100%{transform:translate(-12px,110vh);opacity:.3}}
+.shoot{position:absolute;height:2px;width:120px;background:linear-gradient(90deg,transparent,#fff);border-radius:2px;filter:drop-shadow(0 0 6px #fff);opacity:0;transform:rotate(20deg);animation:pShoot 5.5s ease-in infinite}
+.shoot.b{animation-delay:2.6s;top:26%!important}
+@keyframes pShoot{0%{opacity:0;transform:translate(0,0) rotate(20deg)}6%{opacity:1}18%{opacity:0}100%{opacity:0;transform:translate(46vw,26vh) rotate(20deg)}}
+
+/* fx — New Orleans holiday worlds */
+.bat{position:absolute;width:24px;height:13px;color:#150c1c;opacity:.9;animation:batFly linear infinite}
+.bat svg{width:100%;height:100%;display:block;animation:batFlap .5s ease-in-out infinite;transform-origin:center}
+@keyframes batFly{0%{transform:translate(-14vw,0)}100%{transform:translate(114vw,0)}}
+@keyframes batFlap{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.5)}}
+.wisp{position:absolute;width:64px;height:64px;border-radius:50%;background:radial-gradient(circle,rgba(200,150,220,.20),transparent 70%);animation:wispDrift linear infinite}
+@keyframes wispDrift{0%{transform:translate(0,0);opacity:0}22%{opacity:1}100%{transform:translate(28px,-64vh);opacity:0}}
+.bull{position:absolute;bottom:5%;width:80px;height:50px;color:#160808;animation:runRight linear infinite}
+.bull svg{width:100%;height:100%;display:block}
+.runner{position:absolute;bottom:6%;width:16px;height:34px;color:var(--acc,#efe6da);animation:runRight linear infinite}
+.runner svg{width:100%;height:100%;display:block}
+@keyframes runRight{0%{transform:translateX(-16vw)}100%{transform:translateX(132vw)}}
+.dress{position:absolute;top:-8%;width:17px;height:22px;color:#d43b2f;animation:dressFall linear infinite}
+.dress svg{width:100%;height:100%;display:block}
+@keyframes dressFall{0%{transform:translate(0,0) rotate(-10deg)}50%{transform:translate(22px,52vh) rotate(12deg)}100%{transform:translate(-10px,112vh) rotate(-8deg);opacity:.3}}
+.linen{position:absolute;top:-4%;height:118%;width:130px;background:linear-gradient(90deg,transparent,rgba(242,234,216,.11),transparent);animation:linenWave 6.5s ease-in-out infinite;transform-origin:top center}
+@keyframes linenWave{0%,100%{transform:skewX(-7deg) translateX(0)}50%{transform:skewX(7deg) translateX(16px)}}
+.slite{position:absolute;top:9%;width:6px;height:6px;border-radius:50%;background:#f4d98c;box-shadow:0 0 9px 2px #e8c98a;animation:slTw 2.6s ease-in-out infinite}
+@keyframes slTw{0%,100%{opacity:.35}50%{opacity:1}}
+.rain{position:absolute;top:-14%;width:1.5px;background:linear-gradient(transparent,rgba(180,205,225,.75));animation:rainF linear infinite}
+@keyframes rainF{0%{transform:translateY(0)}100%{transform:translateY(124vh)}}
+.bead{position:absolute;top:-6%;width:9px;height:9px;border-radius:50%;animation:beadFall linear infinite}
+@keyframes beadFall{0%{transform:translateY(0) rotate(0)}100%{transform:translateY(120vh) rotate(400deg);opacity:.35}}
+
+/* control chips */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 4px}
+.chip{font-family:'Press Start 2P',monospace;font-size:8px;letter-spacing:.06em;cursor:pointer;
+ background:var(--navy-800);color:var(--sky);border:1px solid var(--border);border-radius:4px;padding:9px 10px;text-transform:uppercase;transition:.15s}
+.chip:hover{border-color:var(--border-strong)}
+.chip.on{background:var(--sky);color:var(--navy-900);border-color:var(--sky)}
+.chip.hol{color:var(--amber);border-color:rgba(232,197,71,.28)}
+.chip.hol.on{background:var(--amber);color:#2a1e04;border-color:var(--amber)}
+
+/* ===== three-card tarot spread (the live homepage build) ===== */
+.spreadframe{border:1px solid rgba(201,169,110,.3);border-radius:10px;overflow:hidden;margin:18px 0 12px;box-shadow:0 24px 60px rgba(8,37,69,.45)}
+.wbspr{position:relative;padding:40px 20px 46px;background:linear-gradient(180deg,#080c09,#0c120c);text-align:center;font-family:'Cinzel',Georgia,serif}
+.wbspr::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(60% 60% at 50% 34%,rgba(201,169,110,.07),transparent 70%)}
+.wbspr-kick{position:relative;font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;color:#c9a96e}
+.wbspr-h{position:relative;font-family:'Cinzel Decorative',serif;font-size:clamp(1.5rem,4vw,2.2rem);margin:.3rem 0 .2rem;color:#f7f0e2}
+.wbspr-sub{position:relative;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.08rem;color:#e8d5a3;margin:0 auto 6px;max-width:46ch}
+.wbspr-stage{position:relative;height:250px;max-width:760px;margin:6px auto 0}
+.wbspr-card{position:absolute;left:50%;top:50%;width:132px;height:206px;margin:-103px 0 0 -66px;border-radius:12px;transform-style:preserve-3d;transition:transform 1s cubic-bezier(.55,.06,.24,1),opacity .5s;will-change:transform}
+.wbspr-cf{position:absolute;inset:0;border-radius:12px;overflow:hidden;backface-visibility:hidden;display:flex;align-items:center;justify-content:center}
+.wbspr-back{background:linear-gradient(160deg,#1c2a1b,#0b120c);border:2px solid #c9a96e;box-shadow:0 0 0 1px rgba(201,169,110,.25),inset 0 0 12px rgba(0,0,0,.6),0 10px 26px rgba(0,0,0,.5)}
+.wbspr-back img{width:88%;height:88%;object-fit:contain;display:block}
+.wbspr-art{transform:rotateY(180deg);background:#0b110c;border:2px solid #c9a96e;box-shadow:0 22px 54px rgba(0,0,0,.7),0 0 26px 3px rgba(201,169,110,.2)}
+.wbspr-art img{width:100%;height:100%;object-fit:contain;padding:5px;display:block}
+.wbspr-card.wbspr-flip{transform:rotateY(180deg)}
+.wbspr-card.wbspr-deal{transition:transform 1.05s cubic-bezier(.5,.05,.2,1),opacity .5s}
+.wbspr-reads{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:760px;margin:8px auto 0;opacity:0;transform:translateY(14px);transition:opacity .7s,transform .7s}
+.wbspr-reads.wbspr-show{opacity:1;transform:none}
+.wbspr-lbl{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.26em;text-transform:uppercase;color:#c9a96e}
+.wbspr-nm{font-family:'Cinzel Decorative',serif;font-size:1.05rem;color:#f7f0e2;margin:.2rem 0 .26rem}
+.wbspr-txt{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;color:#e8dfce;line-height:1.34}
+.wbspr-pour{display:inline-flex;align-items:center;gap:11px;margin:22px auto 0;opacity:0;transition:opacity .7s;border:1px solid rgba(201,169,110,.3);border-radius:100px;padding:8px 18px 8px 15px;background:rgba(201,169,110,.06)}
+.wbspr-pour.wbspr-show{opacity:1}
+.wbspr-pour:hover{border-color:#c9a96e;background:rgba(201,169,110,.12)}
+.wbspr-pl{font-family:'Cinzel',serif;font-size:.54rem;letter-spacing:.2em;text-transform:uppercase;color:#c9a96e}
+.wbspr-pd{font-family:'Cinzel',serif;font-size:.92rem;color:#e8d5a3}
+.wbspr-go{color:#c9a96e;font-size:.7rem;opacity:.7}
+.wbspr-cta{position:relative;margin-top:22px}
+.wbspr-consult{font-family:'Cinzel',serif;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;color:#140f06;background:linear-gradient(135deg,#e8d5a3,#c9a96e);border:none;border-radius:4px;padding:.85rem 1.7rem;box-shadow:0 8px 26px rgba(201,169,110,.28);transition:.18s}
+.wbspr-consult:hover{transform:translateY(-1px);box-shadow:0 12px 32px rgba(201,169,110,.4)}
+.wbspr-again{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;background:transparent;color:#cbb98e;border:1px solid rgba(201,169,110,.4);border-radius:3px;padding:.6rem 1.2rem;margin-top:4px}
+.wbspr-again:hover{border-color:#c9a96e;color:#fff}
+.wbspr-hide{opacity:0!important;pointer-events:none}
+@media(max-width:680px){.wbspr-stage{height:200px}.wbspr-card{width:96px;height:150px;margin:-75px 0 0 -48px}.wbspr-reads{grid-template-columns:1fr;gap:14px;max-width:320px}.wbspr-txt{max-width:30ch;margin:0 auto}}
+
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 36px;margin-top:6px}
+.why-item{padding:16px 0;border-bottom:1px dashed var(--border)}
+.why-item h3{font-size:0.95rem;font-weight:700;color:var(--cream);margin-bottom:5px}
+.why-item p{font-size:0.88rem;color:var(--muted);margin:0;max-width:none}
+
+.tl{margin-top:10px}
+.tl-row{display:grid;grid-template-columns:130px 1fr;gap:24px;padding:20px 0;border-bottom:1px solid var(--border)}
+.tl-date{font-family:'Press Start 2P',monospace;font-size:9px;color:var(--green);line-height:1.9;padding-top:3px}
+.tl-row h3{font-size:1rem;font-weight:700;color:var(--cream);margin-bottom:4px}
+.tl-row p{font-size:0.92rem;color:var(--muted);margin:0;max-width:64ch}
+.tl-row b{color:var(--text)}
+
+.btns{display:flex;gap:14px;flex-wrap:wrap;margin-top:44px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;font-weight:600;font-size:0.9rem;border-radius:5px}
+.btn-p{background:var(--sky);color:var(--navy-900)}
+.btn-p:hover{background:var(--sky-light)}
+.btn-g{border:1px solid rgba(159,212,242,0.35);color:var(--sky)}
+.btn-g:hover{border-color:var(--sky)}
+
+@media(max-width:820px){
+  .statrow{grid-template-columns:repeat(2,1fr)}
+  .why-grid{grid-template-columns:1fr}
+  .tl-row{grid-template-columns:1fr;gap:6px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="eyebrow">BitBrd &middot; build story</span>
+  <h1>The website that knows what night it is.</h1>
+  <p class="lede">Witches Brew Coffee Co. sells coffee, tea, and a little bit of ritual. So we taught their homepage to keep a calendar of its own. On an ordinary day a <b>true-phase moon</b> rises over the everyday hero. On a sabbat, a full moon, or a New Orleans holiday, the whole hero <b>re-skins itself</b> for the occasion &mdash; its own night-sky color, its own weather. When the shop has an event on the books, a dedicated <b>event hero</b> takes over, then switches itself off the moment the event ends. And every visitor is dealt a <b>three-card tarot spread</b> paired to drinks on the menu. It's all computed in the visitor's own browser, and Google sees a normal, fast page.</p>
+
+  <div class="statrow">
+    <div class="stat"><b>17</b><span>nights it dresses for</span></div>
+    <div class="stat"><b>0</b><span>manual updates a year</span></div>
+    <div class="stat"><b>3</b><span>cards in the daily spread</span></div>
+    <div class="stat"><b>&lt;2kb</b><span>extra weight on the page</span></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">01</span></div>
+    <h2>See it change &mdash; the whole year, in one frame</h2>
+    <div class="frame"><div class="sky" id="sky">
+      <div class="sky-stars" id="skyStars"></div>
+      <div class="sky-moon" id="skyMoon"></div>
+      <div class="sky-fx" id="skyFx"></div>
+      <div class="sky-in">
+        <div class="sky-eb" id="skyEb"></div>
+        <div class="sky-h" id="skyH"></div>
+        <div class="sky-lore" id="skyLore"></div>
+        <a class="sky-cta" id="skyCta" href="#"></a>
+      </div>
+    </div></div>
+    <div class="chips" id="chips"></div>
+    <p class="cap">This is the real thing, not a video &mdash; the same treatments running live in your browser. It's cycling on its own; <b>tap any chip</b> to jump to a night. The <b>gold chips are New Orleans holidays</b> &mdash; bats over Krewe of Boo, bulls at San Fermin, red dresses on the run, billowing linen for White Linen Night, a rainy afternoon, and Carnival beads for king-cake season. Every skin sets its own sky color, its own moon phase, and its own weather.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">02</span></div>
+    <h2>A moon that's actually right, drawn the honest way</h2>
+    <p>Most days there's no sabbat and no holiday, so the shop's normal hero stays exactly as it is &mdash; we didn't want to lose the identity Paul already built. We just hung a <b>moon</b> in its sky. And we rebuilt that moon properly: instead of sliding a dark disc across a bright circle, it draws <b>only the lit shape</b> &mdash; the real curved terminator, an ellipse whose width is the illuminated fraction &mdash; and leaves the rest as open sky. The glow is a soft blurred copy of that same lit shape, so it reads like light coming off a surface, not a ring around a coin.</p>
+    <p>The phase is computed from the lunar cycle at page load, in the right orientation for the Northern Hemisphere: <b>waxing lit on the right, waning on the left</b>. Because the unlit part is simply not drawn, the moon looks correct on <b>every</b> sky color &mdash; the orange of Samhain, the blue of Yule, the plum of Beltane &mdash; without a single per-theme tweak. The precedence never surprises anyone: <b>an event wins over a holiday, a holiday over a sabbat, a sabbat over the everyday moon.</b> One day shows one thing, and always the most special thing true right now.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">03</span></div>
+    <h2>One event hero, reused for everything on the calendar</h2>
+    <p>The shop runs a lot of gatherings &mdash; psychic nights, a table-read collective, a book club, dream circles. Rather than build a banner for each, we built <b>one</b> event hero and taught it to read the shop's own event calendar. On a day with something on the books, it takes over the top of the homepage, names the event, and points a single button at the details.</p>
+    <p>The important part is the <b>off switch</b>. Each event carries an end time, and the hero checks the clock: the instant the event is over, the calendar rolls to the next one, and if nothing's coming up, the page quietly falls back to the moon-and-hero. Nobody has to remember to take the banner down. We watched it happen for real &mdash; a table-read night expired at 8&nbsp;PM, and by 8:01 the homepage had already moved on.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">04</span></div>
+    <h2>A three-card spread for every visitor</h2>
+    <div class="spreadframe">
+      <section class="wbspr" id="wbspr">
+        <div class="wbspr-kick">The Cards</div>
+        <div class="wbspr-h">A Spread for the Day</div>
+        <div class="wbspr-sub">Shuffle the deck and draw three &mdash; what&rsquo;s behind you, where you stand, and the path ahead.</div>
+        <div class="wbspr-stage" id="wbsprStage"></div>
+        <div class="wbspr-reads" id="wbsprReads">
+          <div><div class="wbspr-lbl">The Past</div><div class="wbspr-nm" id="wbsprN0"></div><div class="wbspr-txt" id="wbsprT0"></div></div>
+          <div><div class="wbspr-lbl">The Present</div><div class="wbspr-nm" id="wbsprN1"></div><div class="wbspr-txt" id="wbsprT1"></div></div>
+          <div><div class="wbspr-lbl">The Path</div><div class="wbspr-nm" id="wbsprN2"></div><div class="wbspr-txt" id="wbsprT2"></div></div>
+        </div>
+        <div style="text-align:center"><a class="wbspr-pour" id="wbsprPour" href="#"><span class="wbspr-pl">Today, pour &mdash;</span><span class="wbspr-pd" id="wbsprPourD"></span><span class="wbspr-go">&#10022;</span></a></div>
+        <div class="wbspr-cta"><button class="wbspr-consult" id="wbsprConsult" type="button">Consult the Cards &#10022;</button><div><button class="wbspr-again wbspr-hide" id="wbsprAgain" type="button">Draw Again</button></div></div>
+      </section>
+    </div>
+    <p class="cap">Down under the shop's tarot section, the deck <b>fans out face-down</b> &mdash; each card wearing Witches Brew's own folk-art crest in gold. Tap <b>Consult the Cards</b> and it gathers, riffle-shuffles, and deals three: <b>Past, Present, Path</b>, each flipping to a hand-drawn Major Arcana with a one-line reading. The center card names a drink and links to its <b>exact row on the menu</b> &mdash; here, the real spread, running the same code as the homepage. Draw again for a fresh three.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">05</span></div>
+    <h2>Why it doesn't cost the shop a thing in traffic</h2>
+    <div class="why-grid">
+      <div class="why-item"><h3>Computed, not scheduled</h3><p>The sabbat dates, the holidays, the moon phase, and the day's cards are all worked out in the visitor's browser from the calendar and the clock. There is no CMS entry to make, no banner to publish, no date to forget. It runs itself, forever.</p></div>
+      <div class="why-item"><h3>Google still sees a normal page</h3><p>The magic layers on after the real content loads, so search engines index the same clean, fast homepage they always did. The theatre is for people; the substance is for the crawler.</p></div>
+      <div class="why-item"><h3>Featherweight</h3><p>No image sliders, no animation library, no video. It's a small script and some CSS &mdash; a couple of kilobytes of real logic &mdash; so the page stays as quick as it was before we touched it.</p></div>
+      <div class="why-item"><h3>Kind to the sensitive</h3><p>Every ember, petal, bat, raindrop and shooting star respects the visitor's reduce-motion setting. Turn animations off in your OS and the sky goes still and calm, no exceptions.</p></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">06</span></div>
+    <h2>The build log</h2>
+    <div class="tl">
+      <div class="tl-row"><div class="tl-date">JUL 2026</div><div><h3>The moon, and the idea</h3><p>Started small: hang a real-phase moon over the existing hero. Once it was up there, the obvious next question was &mdash; what if the whole sky knew what day it was?</p></div></div>
+      <div class="tl-row"><div class="tl-date">JUL</div><div><h3>Eight sabbats and two moons</h3><p>Built a skin for each of the eight sabbats plus the full and dark moons: its own palette, its own weather, its own words. A test switch (<code>?wbhm=beltane</code>) previews any night on demand.</p></div></div>
+      <div class="tl-row"><div class="tl-date">JUL</div><div><h3>New Orleans holidays</h3><p>Then the city's own calendar: bats for Krewe of Boo, running bulls at San Fermin, red dresses on the run, billowing linen for White Linen Night, a proper rainy afternoon, and purple-green-gold beads for Carnival. Each its own color world and effect.</p></div></div>
+      <div class="tl-row"><div class="tl-date">JUL</div><div><h3>The moon, rebuilt honest</h3><p>Threw out the sliding-disc moon and redrew it as a single lit shape with a true terminator ellipse, glow blurred off the lit surface. It now reads correct on every sky color at once &mdash; no per-theme patching.</p></div></div>
+      <div class="tl-row"><div class="tl-date">JUL</div><div><h3>The three-card spread, wired to the menu</h3><p>Replaced the single daily card with a fanning deck that shuffles and deals <b>Past, Present, Path</b>, gold crest on every card back, the center card linking to its <b>exact drink</b> on the menu. Fresh draw on every tap.</p></div></div>
+      <div class="tl-row"><div class="tl-date">TODAY</div><div><h3>Living, at witchesbrew.co</h3><p>Open the shop's homepage on any given night and the sky will tell you what kind of night it is. That's the demo &mdash; it's just outside, waiting for the right moon.</p></div></div>
+    </div>
+  </div>
+
+  <div class="btns">
+    <a class="btn btn-p" href="/#contact">Want something alive like this? &rarr;</a>
+    <a class="btn btn-g" href="/kds">The kitchen screen that deals tarot</a>
+    <a class="btn btn-g" href="/">&larr; Back to BitBrd</a>
+  </div>
+</div>
+
+<script is:inline>
+(function(){
+  var CDN="https://cdn.shopify.com/s/files/1/0592/4451/1278/files/";
+  var V=".png?v=1777757958";
+  var ARCH="https://cdn.shopify.com/s/files/1/0592/4451/1278/files/wb_arch_gold.png?v=1783574658";
+  var OVR={magician:CDN+"magician_2f39e71f-8178-4aa7-ba16-8af4d2a15412.png?v=1777781811",
+           fool:CDN+"fool_fa66ccf4-e96b-47be-aacc-07632d3f135a.png?v=1777781825"};
+  function art(s){return OVR[s]||CDN+s+V;}
+  var RM=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- the SVG lit-crescent moon (ported from the live homepage) ---------- */
+  var _mid=0;
+  function moonSVG(o){
+    o=o||{};var R=32,cx=42,cy=42;
+    var k=Math.max(0,Math.min(1,o.illum==null?0.5:o.illum)), waxing=!o.waning;
+    var rx=Math.abs(2*k-1)*R;
+    var outer=waxing?1:0, inner=(k>0.5)?outer:1-outer;
+    var lit='M '+cx+' '+(cy-R)+' A '+R+' '+R+' 0 0 '+outer+' '+cx+' '+(cy+R)+
+            ' A '+rx.toFixed(2)+' '+R+' 0 0 '+inner+' '+cx+' '+(cy-R)+' Z';
+    var face='#f4e8c2', edge='#cdbb8e', glow='rgba(233,213,163,.72)';
+    // Variant B (matches the live WB hero): the specular highlight tracks the lit limb + phase, so the sphere reads correctly
+    var _dir=waxing?1:-1, _hcx=((cx+_dir*(0.55-0.45*k)*R)/84*100).toFixed(1)+'%';
+    var id='m'+(++_mid);
+    var faint = k<0.06 ? ' opacity="'+(k/0.06).toFixed(2)+'"' : '';
+    return '<svg viewBox="0 0 84 84" width="84" height="84" aria-hidden="true"'+faint+'>'
+     +'<defs><radialGradient id="'+id+'f" cx="'+_hcx+'" cy="40%" r="58%">'
+     +'<stop offset="0%" stop-color="'+face+'"/><stop offset="70%" stop-color="'+face+'"/><stop offset="100%" stop-color="'+edge+'"/></radialGradient>'
+     +'<filter id="'+id+'g" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="3.8"/></filter></defs>'
+     +'<path d="'+lit+'" fill="'+glow+'" filter="url(#'+id+'g)"/>'
+     +'<path d="'+lit+'" fill="url(#'+id+'f)"/></svg>';
+  }
+
+  /* ---- starfield ---- */
+  var stars=document.getElementById('skyStars');
+  if(stars){var h='';for(var i=0;i<46;i++){h+='<span class="sky-star" style="left:'+(Math.random()*100).toFixed(1)+'%;top:'+(Math.random()*72).toFixed(1)+'%;animation-delay:'+(Math.random()*3.4).toFixed(2)+'s"></span>';}stars.innerHTML=h;}
+
+  /* ---- the states (mirror of the live system) ---- */
+  // [key,label,eyebrow,title,lore,bg,acc,acc2,illum(0..1),fx,cta,mode,waning,holiday]
+  var S=[
+   ["normal","Everyday","Mid-City · New Orleans","Witches Brew Coffee Co.","Specialty coffee, tea &amp; house-made pastries","radial-gradient(120% 90% at 50% -10%,#12200f,#05070a 72%)","#e8d5a3","#cdbb8e",0.30,"none","Order Pickup ✦","sky",0,0],
+   ["samhain","Samhain · Oct 31","The Veil Thins","Samhain","When the door between worlds stands open.","radial-gradient(120% 90% at 50% 0%,#2a1030,#0a0410 74%)","#e8933f","#d7a6c6",0.50,"ember","Order Pickup ✦","sky",0,0],
+   ["yule","Yule · Dec 21","The Long Night","Yule","The year turns at the bottom of the dark.","radial-gradient(120% 90% at 50% 0%,#0c1e34,#04070d 76%)","#bfe0f2","#dbe9f5",0.98,"frost","Order Pickup ✦","sky",0,0],
+   ["imbolc","Imbolc · Feb 1","First Stirrings","Imbolc","A candle in the cold; the light returns.","radial-gradient(120% 90% at 50% 0%,#15263a,#060a10 76%)","#e6eef5","#cfe1f2",0.10,"frost","Order Pickup ✦","sky",0,0],
+   ["ostara","Ostara · Mar 20","Balance Point","Ostara","Day and night, held even for a breath.","radial-gradient(120% 90% at 50% 0%,#0f2a2a,#05100f 74%)","#f0dca0","#e6d9ad",0.50,"petal","Order Pickup ✦","sky",0,0],
+   ["beltane","Beltane · May 1","The Fires Lit","Beltane","Bloom and flame; the world leans warm.","radial-gradient(120% 90% at 50% 0%,#2a1226,#0c0510 74%)","#e6a6c6","#f0c46a",0.72,"petal","Order Pickup ✦","sky",0,0],
+   ["litha","Litha · Jun 21","High Summer","Litha","The sun at its height, hoarding the hours.","radial-gradient(120% 90% at 50% 0%,#241634,#0a0715 74%)","#f0c04a","#e8b45a",0.99,"ember","Order Pickup ✦","sky",0,0],
+   ["lammas","Lammas · Aug 1","First Harvest","Lammas","The first grain in; the turning begins.","radial-gradient(120% 90% at 50% 0%,#2a2210,#0e0a04 74%)","#e8c760","#d8a24a",0.60,"ember","Order Pickup ✦","sky",0,0],
+   ["mabon","Mabon · Sep 22","Second Harvest","Mabon","Gratitude, and the slow fall of the leaves.","radial-gradient(120% 90% at 50% 0%,#2c1608,#0e0704 74%)","#d1893a","#c9702e",0.50,"leaf","Order Pickup ✦","sky",0,0],
+   ["fullmoon","Full Moon","The Moon Is Full","Full Moon","Light enough to read the night by.","radial-gradient(120% 90% at 50% 0%,#101c30,#04070d 76%)","#dfeaf6","#cfe1f2",1.0,"shoot","Order Pickup ✦","sky",0,0],
+   ["darkmoon","Dark Moon","No Moon Tonight","Dark Moon","The sky keeps its own counsel.","radial-gradient(120% 90% at 50% 0%,#0a0c14,#030407 78%)","#9fb2c8","#8ca3ba",0.0,"shoot","Order Pickup ✦","sky",1,0],
+   ["event","Calendar Event","Tonight · This Solstice","Fun With Psychics","Divination, shared. Doors at six.","radial-gradient(120% 90% at 50% 0%,#241040,#0a0518 74%)","#e8d5a3","#c9a96e",0.34,"none","See What's On ✦","event",0,0],
+   ["krewe","Krewe of Boo · Oct 24","The Bats Are Out","Krewe of Boo","New Orleans' Halloween parade rolls tonight.","radial-gradient(120% 90% at 50% 0%,#2a1030,#0a0410 74%)","#e8933f","#c8a0da",0.66,"bats","See What's On ✦","sky",0,1],
+   ["sanfermin","San Fermin · Jul 11","Running of the Bulls","San Fermin NOLA","White and red, and a herd at your heels.","radial-gradient(120% 90% at 50% 0%,#2a0e0e,#0c0404 74%)","#efe6da","#d43b2f",0.40,"bulls","See What's On ✦","sky",0,1],
+   ["reddress","Red Dress Run · Aug","A Sea of Red","Red Dress Run","Ten thousand red dresses through the Quarter.","radial-gradient(120% 90% at 50% 0%,#2a0c12,#0c0406 74%)","#e87a86","#d43b2f",0.28,"dresses","See What's On ✦","sky",0,1],
+   ["whitelinen","White Linen · Aug 1","Dressed in White","White Linen Night","Julia Street in linen and string lights.","radial-gradient(120% 90% at 50% 0%,#0f1c26,#04080d 76%)","#f2ead8","#e8c98a",0.55,"linen","See What's On ✦","sky",0,1],
+   ["rainy","A Rainy Day","Rain Over Mid-City","A Rainy Day","Best window seat in the city, honestly.","radial-gradient(120% 90% at 50% 0%,#141c26,#070b10 78%)","#a9c0d4","#c6d6e4",0.20,"rain","Find Your Window ✦","sky",1,1],
+   ["carnival","Carnival · King Cake","Laissez les Bons Temps","King Cake Season","Purple, green, and gold, and a baby inside.","radial-gradient(120% 90% at 50% 0%,#1a0e2a,#080410 76%)","#e8c547","#8f5bd0",0.80,"beads","See the Menu ✦","sky",0,1]
+  ];
+
+  var sky=document.getElementById('sky'),moonBox=document.getElementById('skyMoon'),
+      fx=document.getElementById('skyFx'),eb=document.getElementById('skyEb'),H=document.getElementById('skyH'),
+      lore=document.getElementById('skyLore'),cta=document.getElementById('skyCta');
+
+  var BAT='<svg viewBox="0 0 32 16" fill="currentColor"><path d="M16 5C13 1 9 1 6 4c2-1 4 0 4 3-3-1-6 1-10 1 5 1 7 3 8 6 2-4 5-5 8-2 3-3 6-2 8 2 1-3 3-5 8-6-4 0-7-2-10-1 0-3 2-4 4-3-3-3-7-3-10 1z"/></svg>';
+  var BULL='<svg viewBox="0 0 80 50" fill="currentColor"><path d="M3 33q6-2 11 0l4-2q3-8 11-9l0-6q3 3 4 7 6-1 11 2 4-3 9-2q-3 2-3 6l7 2q6 1 8 7-4-2-8-1l-2 9-3 0 1-7q-6 2-13 1l-2 7-3 0 1-7-15 0-2 7-3 0 1-7q-5-1-8-6z"/></svg>';
+  var RUN='<svg viewBox="0 0 16 34" fill="currentColor"><circle cx="8" cy="4" r="3"/><path d="M8 8l0 12-4 10 2 1 3-8 3 8 2-1-4-10 0-12z"/></svg>';
+  var DRESS='<svg viewBox="0 0 17 22" fill="currentColor"><path d="M6 1h5l-1 4 4 15H4l4-15z"/></svg>';
+
+  function buildFx(kind,acc){
+    fx.innerHTML='';if(RM||kind==='none')return;
+    function mk(cls,n,styleFn,inner){var frag='';for(var i=0;i<n;i++){frag+='<span class="'+cls+'" style="'+styleFn(i)+'">'+(inner||'')+'</span>';}fx.insertAdjacentHTML('beforeend',frag);}
+    if(kind==='ember')mk('p ember',16,function(){return 'left:'+(6+Math.random()*88).toFixed(1)+'%;animation-duration:'+(4.5+Math.random()*4).toFixed(1)+'s;animation-delay:'+(Math.random()*5).toFixed(1)+'s';});
+    if(kind==='petal')mk('p petal',14,function(){return 'left:'+(Math.random()*96).toFixed(1)+'%;animation-duration:'+(7+Math.random()*5).toFixed(1)+'s;animation-delay:'+(Math.random()*7).toFixed(1)+'s';});
+    if(kind==='leaf')mk('p leaf',13,function(){return 'left:'+(Math.random()*96).toFixed(1)+'%;animation-duration:'+(9+Math.random()*5).toFixed(1)+'s;animation-delay:'+(Math.random()*8).toFixed(1)+'s';});
+    if(kind==='frost')mk('p frost',26,function(){return 'left:'+(Math.random()*100).toFixed(1)+'%;animation-duration:'+(6+Math.random()*5).toFixed(1)+'s;animation-delay:'+(Math.random()*6).toFixed(1)+'s';});
+    if(kind==='shoot')fx.insertAdjacentHTML('beforeend','<span class="shoot" style="top:15%;left:-10%"></span><span class="shoot b" style="left:-14%"></span>');
+    if(kind==='bats'){
+      mk('bat',5,function(){return 'top:'+(8+Math.random()*40).toFixed(0)+'%;animation-duration:'+(7+Math.random()*6).toFixed(1)+'s;animation-delay:'+(Math.random()*7).toFixed(1)+'s';},BAT);
+      mk('wisp',3,function(){return 'left:'+(10+Math.random()*78).toFixed(0)+'%;bottom:-12%;animation-duration:'+(9+Math.random()*6).toFixed(1)+'s;animation-delay:'+(Math.random()*8).toFixed(1)+'s';});
+    }
+    if(kind==='bulls'){
+      fx.insertAdjacentHTML('beforeend','<span class="bull" style="animation-duration:6.5s">'+BULL+'</span>'
+        +'<span class="runner" style="left:16%;animation-duration:6.5s;animation-delay:.15s">'+RUN+'</span>'
+        +'<span class="runner" style="left:6%;animation-duration:6.5s;animation-delay:.32s;bottom:8%">'+RUN+'</span>'
+        +'<span class="bull" style="animation-duration:8.2s;animation-delay:3.4s;bottom:9%;opacity:.6">'+BULL+'</span>');
+    }
+    if(kind==='dresses')mk('dress',11,function(){return 'left:'+(Math.random()*96).toFixed(0)+'%;animation-duration:'+(7+Math.random()*5).toFixed(1)+'s;animation-delay:'+(Math.random()*7).toFixed(1)+'s';},DRESS);
+    if(kind==='linen'){
+      var lh='';[18,44,72].forEach(function(L,i){lh+='<span class="linen" style="left:'+L+'%;animation-delay:'+(i*1.3)+'s"></span>';});
+      for(var s=0;s<9;s++)lh+='<span class="slite" style="left:'+(6+s*11)+'%;top:'+(7+(s%2)*4)+'%;animation-delay:'+(s*.3)+'s"></span>';
+      fx.innerHTML=lh;
+    }
+    if(kind==='rain'){
+      var rh='';var layers=[[16,'26px','.35s','.4'],[24,'40px','.55s','.7'],[14,'56px','.8s','1']];
+      layers.forEach(function(L){for(var i=0;i<L[0];i++){rh+='<span class="rain" style="left:'+(Math.random()*100).toFixed(1)+'%;height:'+L[1]+';opacity:'+L[3]+';animation-duration:'+L[2]+';animation-delay:'+(Math.random()*1).toFixed(2)+'s"></span>';}});
+      fx.innerHTML=rh;
+    }
+    if(kind==='beads'){
+      var cols=['#8f5bd0','#3fae5a','#e8c547'];
+      mk('bead',20,function(i){return 'left:'+(Math.random()*98).toFixed(1)+'%;background:'+cols[i%3]+';box-shadow:0 0 6px '+cols[i%3]+';animation-duration:'+(3.4+Math.random()*3).toFixed(1)+'s;animation-delay:'+(Math.random()*4).toFixed(1)+'s';});
+    }
+  }
+
+  var cur=-1;
+  function show(i){
+    cur=i;var s=S[i];
+    sky.style.background=s[5];
+    sky.style.setProperty('--acc',s[6]);sky.style.setProperty('--acc2',s[7]);
+    eb.innerHTML=s[2];H.innerHTML=s[3];lore.innerHTML=s[4];cta.textContent=s[10];
+    moonBox.innerHTML=moonSVG({illum:s[8],waning:!!s[12]});
+    buildFx(s[9],s[6]);
+    var cs=document.querySelectorAll('.chip');for(var k=0;k<cs.length;k++)cs[k].classList.toggle('on',k===i);
+  }
+
+  var chips=document.getElementById('chips');
+  S.forEach(function(s,i){var b=document.createElement('button');b.className='chip'+(s[13]?' hol':'');b.textContent=s[1];b.onclick=function(){show(i);restart();};chips.appendChild(b);});
+
+  var timer=null,idx=0;
+  function tick(){idx=(idx+1)%S.length;show(idx);}
+  function restart(){idx=cur;if(timer)clearInterval(timer);if(!RM)timer=setInterval(tick,6800);}
+  show(0);restart();
+
+  /* ---------- three-card tarot spread (same deck + code as the live homepage) ---------- */
+  var DECK=[
+   ["0","The Fool","fool","Begin. The path is kinder than it looks.","Cold Brew","ash-honey"],
+   ["I","The Magician","magician","You already hold every tool you need.","Ash &amp; Honey","ash-honey"],
+   ["II","The High Priestess","priestess","The answer is one you already carry.","Faerie Fog","faerie-fog"],
+   ["III","The Empress","empress","Be nourished. Let today be lush.","Rose Garden Ritual","rose-garden-ritual"],
+   ["IV","The Emperor","emperor","Set the structure, then rest inside it.","Nitro Cold Brew","nitro-cold-brew"],
+   ["V","The Hierophant","hierophant","Keep the old ritual today.","The Queen","the-queen"],
+   ["VI","The Lovers","lovers","Choose from the heart, not the list.","The Lover","the-lover"],
+   ["VII","The Chariot","chariot","Momentum is yours. Take the reins.","Ash &amp; Honey","ash-honey"],
+   ["VIII","Strength","strength","Soft hands, steady heart, gentle power.","The Heroine","the-heroine"],
+   ["IX","The Hermit","hermit","Take the quiet hour. Look inward.","The Lune","the-lune"],
+   ["X","Wheel of Fortune","wheel","The wheel turns your way. Spice it.","Chai Latte","chai-latte"],
+   ["XI","Justice","justice","Find the balance point and stand there.","Matcha","nitro-matcha"],
+   ["XII","The Hanged Man","hanged","Pause. Turn it over. See it new.","The Ally","the-ally"],
+   ["XIII","Death","death","Let the old thing end. Room, at last.","Fireside Ritual","fireside-ritual"],
+   ["XIV","Temperance","temperance","Blend, don't rush. Measure twice.","The Messenger","the-messenger"],
+   ["XV","The Devil","devil","Name the thing that holds you.","The Seeker","the-seeker"],
+   ["XVI","The Tower","tower","Something breaks so it can be rebuilt.","Espresso, neat","espresso-shot"],
+   ["XVII","The Star","star","Hope returns. Breathe it all the way in.","The Magician (tea)","the-magician"],
+   ["XVIII","The Moon","moon","Trust the dark. Follow the dream.","Nitro Matcha","nitro-matcha"],
+   ["XIX","The Sun","sun","Joy, plainly. Step into the light.","The Witches Bloom","witches-bloom"],
+   ["XX","Judgement","judgement","Rise. Answer the call you've put off.","Nitro Cold Brew","nitro-cold-brew"],
+   ["XXI","The World","world","Completion. You've arrived — taste it.","Barista's Choice",""]
+  ];
+  function drinkLink(slug){return "https://www.witchesbrew.co/pages/menu"+(slug?("#wbm-"+slug):"");}
+  var band=document.getElementById('wbspr');
+  var stage=band.querySelector('#wbsprStage');var FAN=13;var fan=[];
+  function sw(){return window.innerWidth<680;}
+  function mk(){var c=document.createElement('div');c.className='wbspr-card';c.innerHTML='<div class="wbspr-cf wbspr-back"><img alt="" src="'+ARCH+'"></div><div class="wbspr-cf wbspr-art"></div>';return c;}
+  function layoutFan(){
+    Array.prototype.slice.call(stage.querySelectorAll('.wbspr-card')).forEach(function(c){c.remove();});
+    fan=[];var W=sw();var spread=W?54:88,lift=W?11:15;
+    for(var i=0;i<FAN;i++){var c=mk();stage.appendChild(c);fan.push(c);
+      var t=(i/(FAN-1))-0.5;var rot=t*(W?32:42);var x=t*spread*2.2,y=Math.abs(t)*lift*3.4-lift;
+      c.style.transform='translate('+x.toFixed(1)+'px,'+y.toFixed(1)+'px) rotate('+rot.toFixed(1)+'deg)';c.style.zIndex=10+i;}
+  }
+  function collect(){fan.forEach(function(c,i){c.style.transition='transform .6s cubic-bezier(.5,.05,.2,1)';c.style.transform='translate(0,0) rotate('+((i-FAN/2)*.6).toFixed(1)+'deg)';});}
+  function shuffle(cb){var half=Math.ceil(FAN/2);
+    function riffle(dir,dur,then){fan.forEach(function(c,i){var sgn=(i<half)?-1:1;c.style.transition='transform '+dur+'ms ease';c.style.transform='translate('+(sgn*dir)+'px,'+(-Math.random()*6)+'px) rotate('+(sgn*4*(dir>0?1:0)).toFixed(1)+'deg)';});setTimeout(then,dur);}
+    riffle(42,150,function(){riffle(0,150,function(){riffle(56,150,function(){riffle(0,160,cb);});});});}
+  function pos3(){var W=sw();var gap=W?104:224,y=-2;return [[-gap,y],[0,y],[gap,y]];}
+  function pick3(){var idx=[],pool=[];for(var i=0;i<DECK.length;i++)pool.push(i);for(var n=0;n<3;n++){var j=Math.floor(Math.random()*pool.length);idx.push(pool.splice(j,1)[0]);}return idx;}
+  function deal(idx){var P=pos3();
+    fan.forEach(function(c){c.style.transition='opacity .45s';c.style.opacity='0';});
+    setTimeout(function(){fan.forEach(function(c){c.remove();});},480);
+    idx.forEach(function(di,k){var c=mk();c.className='wbspr-card wbspr-deal';stage.appendChild(c);
+      c.querySelector('.wbspr-art').innerHTML='<img alt="" src="'+art(DECK[di][2])+'">';
+      c.style.transform='translate(0,0) rotate(0deg)';c.style.zIndex=30+k;c.style.opacity='0';
+      setTimeout(function(){c.style.opacity='1';c.style.transform='translate('+P[k][0]+'px,'+P[k][1]+'px) rotate(0deg)';},120+k*230);
+      setTimeout(function(){c.classList.add('wbspr-flip');c.style.transform='translate('+P[k][0]+'px,'+P[k][1]+'px) rotate(0deg) rotateY(180deg)';},120+k*230+780);
+    });
+    setTimeout(function(){
+      idx.forEach(function(di,k){band.querySelector('#wbsprN'+k).textContent=DECK[di][1];band.querySelector('#wbsprT'+k).innerHTML='&ldquo;'+DECK[di][3]+'&rdquo;';});
+      band.querySelector('#wbsprReads').classList.add('wbspr-show');
+      var present=DECK[idx[1]];var pour=band.querySelector('#wbsprPour');
+      band.querySelector('#wbsprPourD').innerHTML=present[4];pour.setAttribute('href',drinkLink(present[5]));pour.classList.add('wbspr-show');
+      band.querySelector('#wbsprAgain').classList.remove('wbspr-hide');
+    },120+2*230+780+700);
+  }
+  function reset(){band.querySelector('#wbsprReads').classList.remove('wbspr-show');band.querySelector('#wbsprPour').classList.remove('wbspr-show');band.querySelector('#wbsprAgain').classList.add('wbspr-hide');['wbsprN0','wbsprN1','wbsprN2','wbsprT0','wbsprT1','wbsprT2'].forEach(function(id){band.querySelector('#'+id).textContent='';});layoutFan();}
+  function run(){band.querySelector('#wbsprConsult').classList.add('wbspr-hide');collect();setTimeout(function(){shuffle(function(){deal(pick3());});},650);}
+  band.querySelector('#wbsprConsult').addEventListener('click',run);
+  band.querySelector('#wbsprAgain').addEventListener('click',function(){reset();setTimeout(function(){collect();setTimeout(function(){shuffle(function(){deal(pick3());});},500);},40);});
+  DECK.forEach(function(x){var im=new Image();im.src=art(x[2]);});
+  (function(){var b=new Image();b.src=ARCH;})();
+  layoutFan();
+})();
+</script>
+</body>
+</html>
