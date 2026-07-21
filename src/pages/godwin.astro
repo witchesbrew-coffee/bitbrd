@@ -1,0 +1,206 @@
+---
+const title = 'The Guardian That Runs a Loyalty Program | BitBrd';
+const description = "Godwin the Gargoyle: a once-a-day scan-to-win moment built for Witches Brew Coffee Co. that doubles as a first-party subscriber pipeline into Shopify.";
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href="https://bitbrd.com/godwin" />
+<link rel="icon" href="/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{--navy-900:#082545;--navy-800:#0A1F3D;--sky:#9FD4F2;--sky-light:#CFE9F7;--ink:#0A1628;--cream:#F7FAFD;--text:#E8F2FC;--muted:#8CA3BA;--green:#34D399;--amber:#E8C547;--rose:#E08D79;--border:rgba(159,212,242,0.15);--border-strong:rgba(159,212,242,0.35)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--ink);color:var(--text);line-height:1.65}
+.wrap{max-width:1020px;margin:auto;padding:60px 24px 80px}
+.eyebrow{font-family:'Press Start 2P',monospace;font-size:10px;color:var(--sky);letter-spacing:0.15em;text-transform:uppercase}
+h1{font-family:'Press Start 2P',monospace;font-size:clamp(1.1rem,3vw,1.7rem);color:var(--cream);margin:16px 0 14px;line-height:1.55}
+.lede{color:var(--muted);max-width:64ch;margin-bottom:26px}
+.lede b{color:var(--text)}
+a{text-decoration:none;color:inherit}
+
+.statrow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:6px 0 30px}
+.stat{background:var(--navy-800);border:1px solid var(--border);border-radius:8px;padding:18px;text-align:center}
+.stat b{display:block;font-family:'Press Start 2P',monospace;font-size:1.05rem;color:var(--green);margin-bottom:8px}
+.stat span{font-size:0.8rem;color:var(--muted)}
+
+.sec{margin-top:64px}
+.sec-tag{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;flex-wrap:wrap}
+.sec-num{font-family:'Press Start 2P',monospace;font-size:11px;color:var(--sky)}
+.sec h2{font-family:'Press Start 2P',monospace;font-size:clamp(0.85rem,1.8vw,1.05rem);color:var(--cream);line-height:1.6;margin-bottom:14px}
+.sec p{color:var(--muted);max-width:68ch;margin-bottom:13px;font-size:0.97rem}
+.sec b{color:var(--text)}
+.sec code{font-family:monospace;font-size:0.87em;color:var(--sky-light);background:var(--navy-800);padding:1px 6px;border-radius:3px}
+
+.frame{border:1px solid var(--border-strong);border-radius:10px;overflow:hidden;background:var(--ink);margin:18px 0 12px;box-shadow:0 24px 60px rgba(8,37,69,0.5)}
+.frame img,.frame video{display:block;width:100%;height:auto}
+.cap{font-size:0.84rem;color:var(--muted);max-width:70ch}
+.cap b{color:var(--text)}
+
+/* the Godwin card, centered on the black it lives on */
+.card-shot{max-width:380px;margin:24px auto 12px}
+.card-shot img{display:block;width:100%;height:auto;border-radius:16px;box-shadow:0 30px 70px rgba(0,0,0,0.6)}
+
+/* split layout: slip + rules */
+.split{display:grid;grid-template-columns:1.15fr 0.85fr;gap:44px;align-items:start;margin-top:18px}
+.slip-shot{background:#E9ECF0;border-radius:10px;padding:18px;box-shadow:0 24px 60px rgba(8,37,69,0.5);width:fit-content;margin:auto}
+.slip-shot img{display:block;height:430px;width:auto;margin:auto;box-shadow:0 6px 30px rgba(10,22,40,0.35)}
+.rules{margin-top:4px}
+.rules .why-item:first-child{padding-top:4px}
+
+/* deck card + qr, sec 05 */
+.split3{display:grid;grid-template-columns:0.9fr 1.1fr;gap:44px;align-items:center;margin-top:18px}
+.qr-shot{text-align:center}
+.qr-shot img{display:block;width:100%;max-width:300px;height:auto;margin:auto;border-radius:12px;box-shadow:0 24px 60px rgba(8,37,69,0.5)}
+
+/* phones */
+.phones{display:flex;gap:36px;justify-content:center;flex-wrap:wrap;margin:26px 0 14px}
+.phone{width:252px;background:#0B1220;border:2px solid #2A3A52;border-radius:34px;padding:10px;box-shadow:0 30px 70px rgba(8,37,69,0.65);position:relative}
+.phone::before{content:'';position:absolute;top:18px;left:50%;transform:translateX(-50%);width:74px;height:18px;background:#0B1220;border-radius:10px;z-index:2}
+.phone-screen{border-radius:24px;overflow:hidden}
+.phone-screen img,.phone-screen video{display:block;width:100%;height:auto}
+.phone-tag{text-align:center;margin-top:12px;font-family:'Press Start 2P',monospace;font-size:8px;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase}
+.phone-tag b{color:var(--green)}
+
+.flow-title{font-size:1.05rem;font-weight:700;color:var(--cream);margin-bottom:10px}
+
+/* value grid */
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 36px;margin-top:6px}
+.why-item{padding:16px 0;border-bottom:1px dashed var(--border)}
+.why-item h3{font-size:0.95rem;font-weight:700;color:var(--cream);margin-bottom:5px}
+.why-item p{font-size:0.88rem;color:var(--muted);margin:0;max-width:none}
+
+/* build log timeline */
+.tl{margin-top:10px}
+.tl-row{display:grid;grid-template-columns:110px 1fr;gap:24px;padding:20px 0;border-bottom:1px solid var(--border)}
+.tl-date{font-family:'Press Start 2P',monospace;font-size:9px;color:var(--green);line-height:1.9;padding-top:3px}
+.tl-row h3{font-size:1rem;font-weight:700;color:var(--cream);margin-bottom:4px}
+.tl-row p{font-size:0.92rem;color:var(--muted);margin:0;max-width:64ch}
+.tl-row b{color:var(--text)}
+
+.btns{display:flex;gap:14px;flex-wrap:wrap;margin-top:44px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;font-weight:600;font-size:0.9rem;border-radius:5px;text-decoration:none}
+.btn-p{background:var(--sky);color:var(--navy-900)}
+.btn-p:hover{background:var(--sky-light)}
+.btn-g{border:1px solid rgba(159,212,242,0.35);color:var(--sky)}
+.btn-g:hover{border-color:var(--sky)}
+
+@media(max-width:820px){
+  .statrow{grid-template-columns:repeat(2,1fr)}
+  .split{grid-template-columns:1fr}
+  .split3{grid-template-columns:1fr;gap:28px}
+  .why-grid{grid-template-columns:1fr}
+  .tl-row{grid-template-columns:1fr;gap:6px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="eyebrow">BitBrd &middot; build story</span>
+  <h1>The guardian that runs a loyalty program.</h1>
+  <p class="lede">Witches Brew Coffee Co. already prints a tarot card on every receipt. We slipped a secret <b>twenty-third card</b> into the deck: Godwin, the shop's stone guardian. Once a day, one guest who scans a real order finds him instead of their card, with a dollar-off coupon at his feet. It is a daily reason to scan, and every scan that opts in lands in the shop's <b>Shopify</b> as a customer with consent. A surprise that quietly builds the list.</p>
+
+  <div class="statrow">
+    <div class="stat"><b>1/DAY</b><span>Godwin appears, exactly once</span></div>
+    <div class="stat"><b>50&rarr;1</b><span>one winner under a 50-scan load test</span></div>
+    <div class="stat"><b>$1</b><span>off, redeemed at the counter</span></div>
+    <div class="stat"><b>0</b><span>ways to farm him</span></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">01</span></div>
+    <h2>A secret twenty-third card</h2>
+    <p>The caf&eacute;'s receipts already deal one of <b>22 Major Arcana</b> cards, scan to reveal. Godwin is the twenty-third, and he is not in the rotation. He is the shop's patron gargoyle: a gold gryphon who sits by the door and, in the story, watches who comes and goes.</p>
+    <p>Off the menu, off the deck, he shows up on his own terms. Once a day, for exactly one guest, the ordinary tarot reveal flips to <b>him</b> instead.</p>
+    <div class="card-shot"><img src="/builds/godwin-card.png" alt="The Godwin tarot card: XXIII, a gold gryphon on a rock plinth, titled Godwin, The Guardian" width="1440" height="2400" loading="lazy" /></div>
+    <p class="cap">The real card, live on the shop's site. XXIII &middot; The Guardian.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">02</span></div>
+    <h2>Once a day, decided on the scan</h2>
+    <p>Godwin is never printed on a slip. He is decided the moment a guest scans. Every morning the system rolls <b>one random appearance time</b>, weighted toward the busier afternoon. The first guest to scan a completed, discount-free order after that time wins him. Not before, not twice.</p>
+    <div class="split">
+      <div>
+        <p>Three rules keep him honest:</p>
+        <div class="rules why-grid" style="grid-template-columns:1fr">
+          <div class="why-item"><h3>Once a day, provably</h3><p>An atomic database claim means exactly one scan can ever win. We threw <b>50 simultaneous scans</b> at it; one won, forty-nine got their ordinary card. Every round.</p></div>
+          <div class="why-item"><h3>Real orders only</h3><p>An empty-cart test print or a comped drink can never win him. He only appears on a paid, undiscounted order that a guest actually scans.</p></div>
+          <div class="why-item"><h3>On the scan, not the print</h3><p>The slip prints an ordinary card. Godwin is chosen when someone scans, so an unscanned or unpaid slip never spends his one daily appearance.</p></div>
+        </div>
+      </div>
+      <div class="slip-shot"><img src="/builds/godwin-slip.png" alt="The printed receipt slip: Witches Brew logo, drink items, and a tarot QR block reading A CARD HAS BEEN DRAWN" width="516" height="1200" loading="lazy" /></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">03</span></div>
+    <h2>Godwin notices you</h2>
+    <div class="phones">
+      <div>
+        <div class="phone"><div class="phone-screen"><img src="/builds/godwin-coupon.png" alt="The Godwin reveal on a phone: Godwin Notices You, a one-dollar-off code, and an SMS-updates opt-in" width="780" height="1688" loading="lazy" /></div></div>
+        <div class="phone-tag">scan &middot; the guardian &middot; <b>a gift at your feet</b></div>
+      </div>
+    </div>
+    <p>When the winning guest scans, their card flips to <b>Godwin himself</b>. A wax-sealed envelope slides up: <i>Godwin left something at your feet.</i> Open it and there is a one-dollar-off code, on the phone already in their hand.</p>
+    <p>Below it, a quiet ask: want the shop's texts? Yes or no, with the disclaimer. Say yes and they become a <b>Shopify customer with SMS consent</b>, tagged with where they came from. The delight and the opt-in are the same tap.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">04</span></div>
+    <h2>The floor sees him too</h2>
+    <p>Godwin is not only a customer moment. When he is won, the barista's kitchen screen flips that order to his <b>full artwork</b> and drops a gold banner across the top: <b>THE GUARDIAN CHOSE #14373</b>. The floor knows to greet them on the way out.</p>
+    <div class="frame"><img src="/builds/godwin-board.png" alt="The kitchen display board with a Godwin order card and a gold winner banner floating across the top" width="1600" height="1000" loading="lazy" /></div>
+    <p class="cap">The banner floats over the board instead of pushing the orders down, and clears itself after a couple of minutes.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">05</span></div>
+    <h2>It lives on paper, too</h2>
+    <p>Godwin is a physical thing. The gryphon is a real statue by the door, and the tarot card is a real printed card, rounded corners, gold on black, part of a deck the shop can hand out. The coupon QR even wears his face.</p>
+    <div class="split3">
+      <div class="card-shot" style="margin:0"><img src="/builds/godwin-card.png" alt="The printed Godwin tarot card, press-ready" width="1440" height="2400" loading="lazy" /></div>
+      <div class="qr-shot"><img src="/builds/godwin-qr.png" alt="The coupon QR code with Godwin's face in the center" width="700" height="700" loading="lazy" /><div class="phone-tag" style="margin-top:14px">the coupon QR &middot; <b>his face in the middle</b></div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">06</span></div>
+    <h2>A delight that pays rent</h2>
+    <p>Here is the part that pays for itself. Every Godwin scan is a reason to pull out a phone, and every opt-in on that phone flows straight into the shop's Shopify as a <b>customer with marketing consent and a source tag</b>. Scan, consent, Shopify, segmented send.</p>
+    <p>We used the same plumbing to move the shop's <b>entire subscriber base, 546 people</b>, off a self-hosted mailing list and into Shopify, each one tagged by where they signed up. Godwin is the front door of a first-party data pipeline dressed up as a party trick.</p>
+    <div class="why-grid">
+      <div class="why-item"><h3>Every surface, one source of truth</h3><p>Homepage popup, tarot reveal, streetcar coupon, event waitlist, and Godwin all write the same Shopify customer record now. No parallel list to drift out of sync.</p></div>
+      <div class="why-item"><h3>Consent done right</h3><p>Email opt-ins and SMS opt-ins land as proper marketing consent, and the SMS box is only honored when the guest actually checks it. The paper trail is Shopify's.</p></div>
+      <div class="why-item"><h3>The reward is real leverage</h3><p>A dollar off is cheap. A daily reason to scan, opt in, and come back is not. The coupon is the hook; the habit is the product.</p></div>
+      <div class="why-item"><h3>It runs on what is already there</h3><p>The whole mechanic rides the kitchen display's existing Phoenix stack and the shop's Shopify. No new subscription, no new vendor.</p></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">07</span></div>
+    <h2>The build log</h2>
+    <div class="tl">
+      <div class="tl-row"><div class="tl-date">APR 2026</div><div><h3>The twenty-third card</h3><p>The tarot reveal was already live. The idea: give the deck a card that is not in the deck, a once-a-day guardian, and hang a small reward on finding him.</p></div></div>
+      <div class="tl-row"><div class="tl-date">JUL 20</div><div><h3>Scan-decides engine</h3><p>Godwin moved from print-time to <b>scan-time</b>: one weighted-random appearance a day, an atomic once-a-day claim, gated on a paid, undiscounted, actually-scanned order. Load-tested at 50 simultaneous scans, one winner.</p></div></div>
+      <div class="tl-row"><div class="tl-date">JUL 20</div><div><h3>The reveal and the floor alert</h3><p>The guest's card flips to Godwin with a wax-sealed coupon envelope; the barista's board flips the same order to his art and drops a gold winner banner that floats over the rail.</p></div></div>
+      <div class="tl-row"><div class="tl-date">JUL 20</div><div><h3>Coupon, QR, and the opt-in</h3><p>Each win mints a unique one-dollar-off code as a Shopify discount, renders a Godwin-faced QR, and offers an SMS-updates opt-in on the same screen.</p></div></div>
+      <div class="tl-row"><div class="tl-date">JUL 20</div><div><h3>Everyone moves to Shopify</h3><p>All 546 existing subscribers migrated into Shopify customers with consent and source tags, and every signup surface repointed. Godwin became the newest door into one clean list.</p></div></div>
+      <div class="tl-row"><div class="tl-date">TODAY</div><div><h3>Live at 2940 Canal Street</h3><p>Order a drink, scan your slip, and on the right day the guardian finds you. That is the demo.</p></div></div>
+    </div>
+  </div>
+
+  <div class="btns">
+    <a class="btn btn-p" href="/#contact">Want something like this built? &rarr;</a>
+    <a class="btn btn-g" href="/kds">The kitchen screen</a>
+    <a class="btn btn-g" href="/">&larr; Back to BitBrd</a>
+  </div>
+</div>
+</body>
+</html>
