@@ -1,6 +1,6 @@
 ---
 const title = 'The Homepage That Ends in a Swamp | BitBrd';
-const description = 'How we built the animated bayou at the bottom of witchesbrew.co: real tree silhouettes, a moonlit waterline, fireflies on their own clocks, and alligators that surface when they feel like it.';
+const description = 'How we built the animated bayou at the bottom of witchesbrew.co: real tree silhouettes, alligators with seven behaviors, swamp lights, a treasure hunt that pays out real coupons, and a sky that mirrors the actual New Orleans weather, calendar, and moon.';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -64,13 +64,13 @@ a{text-decoration:none;color:inherit}
 <div class="wrap">
   <span class="eyebrow">BitBrd &middot; build story</span>
   <h1>The homepage that ends in a swamp.</h1>
-  <p class="lede">Most websites end in a wall of footer links. Witches Brew Coffee Co.'s homepage ends at a <b>Louisiana bayou at night</b>: moss hanging off the oaks, fireflies drifting over still water, and alligators that surface when they feel like it. No stock video, no animation library. It's all drawn and coded by hand, and this page shows how it went together, one layer at a time.</p>
+  <p class="lede">Most websites end in a wall of footer links. Witches Brew Coffee Co.'s homepage ends at a <b>Louisiana bayou at night</b>: moss hanging off the oaks, fireflies drifting over still water, and alligators that surface when they feel like it. No stock video, no animation library. It's all drawn and coded by hand. And since it shipped, the swamp has kept growing: it <b>rains when New Orleans rains</b>, turns violet on the witches' sabbats, fills its moon on real full-moon nights, and hides a <b>treasure hunt that pays out real coupons</b>. This page shows how it went together, one layer at a time.</p>
 
   <div class="statrow">
     <div class="stat"><b>2</b><span>real tree photographs, cut to silhouette</span></div>
-    <div class="stat"><b>3</b><span>alligators, each on its own clock</span></div>
+    <div class="stat"><b>7</b><span>behaviors a gator can wake up with</span></div>
     <div class="stat"><b>0</b><span>stock footage or animation libraries</span></div>
-    <div class="stat"><b>80%</b><span>of a phone screen, so you can sit with it</span></div>
+    <div class="stat"><b>10%</b><span>off, if you can find three cards</span></div>
   </div>
 
   <div class="sec">
@@ -131,13 +131,51 @@ a{text-decoration:none;color:inherit}
 
   <div class="sec">
     <div class="sec-tag"><span class="sec-num">07</span></div>
+    <h2>The gators learn to swim</h2>
+    <p>The first version's gators surfaced, sat still, and sank. Real ones don't. Now every surfacing rolls one of <b>seven behaviors</b>: a lazy drift, a stalk that curls in close and grows before turning away, a shadow prowl where only a dark shape keeps moving under the surface, a back-and-forth patrol, an ambush that vanishes and erupts somewhere else, a slow circle around one patch of water, and a creep so slow you barely catch it.</p>
+    <p>Two rules hold it together. The gator graphic stays <b>dead flat</b>, because a tilting silhouette reads like a sticker sliding on glass, and before any gator starts a move it claims the entire path it's about to swim. If another gator holds any part of that water, it re-rolls a different move somewhere else. <b>Two paths can never cross.</b> On a phone, where the visible water is a narrow window, that same rule quietly makes them take turns.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">08</span></div>
+    <h2>The swamp lights</h2>
+    <p>Louisiana folklore has a name for lights over the marsh at night: <b>feu follet</b>. Every thirty seconds, one rises off the water somewhere, wanders upward in a crooked line, and winks out. It's the smallest thing in the scene and the one people point at.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">09</span></div>
+    <h2>The chest in the water</h2>
+    <div class="frame"><img src="/builds/swamp-chest.jpg" alt="A dark wooden crate floating half-submerged in the moonlit bayou water" loading="lazy" /></div>
+    <p class="cap">Half-sunk, no glow, easy to miss. That's the point.</p>
+    <p>Watch the swamp for <b>four real minutes</b> and a crate drifts up out of the water. Not four minutes after the page loads: the timer only runs while the swamp is actually on your screen, so parking a tab in the background gets you nothing. Click the crate and it cracks open with a beam of gold light, and one of the shop's own <b>tarot cards</b> rises out.</p>
+    <div class="frame"><img src="/builds/swamp-card.jpg" alt="A gold tarot card, The World, revealed over the darkened swamp" loading="lazy" /></div>
+    <p class="cap">The card art is the shop's real Major Arcana deck, the same art on their menu and their tarot pages.</p>
+    <p>Collect three cards and the swamp pays out: <b>10% off</b>, claimed with a phone number, one coupon per number. The code isn't a shared string sitting in the page for anyone to read. The shop's own server, the same machine that runs their kitchen screens and booking system, <b>mints a fresh single-use code</b> for each claim on the spot. A homepage animation that runs a real promotion, with real fraud control, end to end.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">10</span></div>
+    <h2>The swamp knows what night it is</h2>
+    <div class="frame"><img src="/builds/swamp-rain.jpg" alt="Rain streaking through the swamp scene, small rings spreading on the water" loading="lazy" /></div>
+    <p class="cap">Rain in the swamp, with impact rings scattered across the water. You'll only ever see this when it's actually raining at the cafe.</p>
+    <p>The scene checks a live weather feed for the shop's own coordinates every ten minutes. When New Orleans gets one of its famous afternoon downpours, <b>the swamp rains too</b>. When the sky clears, so does the bayou. If the feed ever fails, the swamp stays dry, because a stuck rainstorm would be a bug and a dry night is just a nice evening.</p>
+    <div class="frame"><img src="/builds/swamp-sabbat.jpg" alt="The swamp turned violet: purple sky, lavender fireflies, an amethyst wisp over the water" loading="lazy" /></div>
+    <p class="cap">A sabbat night. The whole swamp crosses over: sky, fireflies, swamp lights, moon halo, even the glints on the water.</p>
+    <p>It reads the calendar and the sky, too. On the <b>eight witches' sabbats</b>, the entire scene turns violet for the night and goes back to green at midnight. On real <b>full-moon nights</b>, computed from the actual lunar cycle rather than a schedule someone has to maintain, the crescent fills into a full disc with a deeper halo. And two small touches for whoever lingers: tap the water anywhere and it ripples where you touched it, and every tenth minute of watching, a <b>bottle floats up</b> carrying the month's gatherings.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">11</span></div>
     <h2>The build log</h2>
     <div class="tl">
       <div class="tl-row"><div class="tl-date">JUL 1</div><div><h3>Two directions, one night</h3><p>Two full homepage concepts built and put side by side: a city skyline and this bayou. The owner picked the swamp. The first version drew the trees in code; they looked like code.</p></div></div>
       <div class="tl-row"><div class="tl-date">JUL 1</div><div><h3>Real trees replace drawn ones</h3><p>The owner sent photographs of moss-draped oaks. We cut, sharpened, and tinted them into the scene the same night. Immediate difference: the moss reads like moss.</p></div></div>
       <div class="tl-row"><div class="tl-date">JUL 2</div><div><h3>The swamp moves to the footer</h3><p>The scene started as the hero at the top of the page. It worked better as the ending. The logo took the top, the bayou took the bottom, and the page finally had an arc: walk in the front door, leave through the swamp.</p></div></div>
       <div class="tl-row"><div class="tl-date">JUL 2</div><div><h3>Gators go feral</h3><p>Fixed schedules replaced with random ones. Surfacing anywhere in the water, depth scaling, the no-overlap rule, and the rare third gator all landed the same day, along with the phone reframe.</p></div></div>
-      <div class="tl-row"><div class="tl-date">TODAY</div><div><h3>Live on the homepage</h3><p>Scroll to the bottom of <b>witchesbrew.co</b> and wait a moment. That's the demo.</p></div></div>
+      <div class="tl-row"><div class="tl-date">JUL 24</div><div><h3>Seven behaviors, zero collisions</h3><p>Each surfacing now rolls one of seven swim patterns, and a claims system reserves the full path before a gator moves, so two can never cross. The owner reviewed eight candidate behaviors and cut the one that didn't feel real.</p></div></div>
+      <div class="tl-row"><div class="tl-date">JUL 24</div><div><h3>Swamp lights and a treasure hunt</h3><p>Feu follet every thirty seconds. A half-sunk crate that only appears after four minutes of actual watching, tarot cards inside, and three cards trade for a 10% code minted server-side, one per phone number.</p></div></div>
+      <div class="tl-row"><div class="tl-date">JUL 24</div><div><h3>The sky goes live</h3><p>Rain gated on the real New Orleans weather, checked every ten minutes. Violet nights on the eight sabbats. A full moon computed from the actual lunar cycle, smoke-tested against the real calendar so the colors change on those nights and only those nights. Ripples where you touch the water, and a bottle of events every tenth minute.</p></div></div>
+      <div class="tl-row"><div class="tl-date">TODAY</div><div><h3>Live on the homepage</h3><p>Scroll to the bottom of <b>witchesbrew.co</b> and wait a moment. That's the demo. If it's raining in New Orleans right now, bring an umbrella.</p></div></div>
     </div>
   </div>
 
