@@ -1,0 +1,176 @@
+---
+const title = 'The Moon on This Homepage Runs a Loyalty Program | BitBrd';
+const description = 'How witchesbrew.co turns its night-sky hero into a loyalty engine: a full-moon coupon that only exists on the actual full moon, an everyday-moon reminder, a celestial tea popup, and a birthday club, all feeding one Shopify list with zero apps.';
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href="https://bitbrd.com/moon" />
+<link rel="icon" href="/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{--navy-900:#082545;--navy-800:#0A1F3D;--sky:#9FD4F2;--sky-light:#CFE9F7;--ink:#0A1628;--cream:#F7FAFD;--text:#E8F2FC;--muted:#8CA3BA;--green:#34D399;--amber:#E8C547;--gold:#C9A96E;--border:rgba(159,212,242,0.15);--border-strong:rgba(159,212,242,0.35)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--ink);color:var(--text);line-height:1.65}
+.wrap{max-width:1020px;margin:auto;padding:60px 24px 80px}
+.eyebrow{font-family:'Press Start 2P',monospace;font-size:10px;color:var(--sky);letter-spacing:0.15em;text-transform:uppercase}
+h1{font-family:'Press Start 2P',monospace;font-size:clamp(1.1rem,3vw,1.7rem);color:var(--cream);margin:16px 0 14px;line-height:1.55}
+.lede{color:var(--muted);max-width:64ch;margin-bottom:26px}
+.lede b{color:var(--text)}
+a{text-decoration:none;color:inherit}
+.statrow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:6px 0 30px}
+.stat{background:var(--navy-800);border:1px solid var(--border);border-radius:8px;padding:18px;text-align:center}
+.stat b{display:block;font-family:'Press Start 2P',monospace;font-size:1.05rem;color:var(--green);margin-bottom:8px}
+.stat span{font-size:0.8rem;color:var(--muted)}
+.sec{margin-top:64px}
+.sec-tag{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;flex-wrap:wrap}
+.sec-num{font-family:'Press Start 2P',monospace;font-size:11px;color:var(--sky)}
+.sec h2{font-family:'Press Start 2P',monospace;font-size:clamp(0.85rem,1.8vw,1.05rem);color:var(--cream);line-height:1.6;margin-bottom:14px}
+.sec p{color:var(--muted);max-width:68ch;margin-bottom:13px;font-size:0.97rem}
+.sec b{color:var(--text)}
+.frame{border:1px solid var(--border-strong);border-radius:10px;overflow:hidden;background:var(--ink);margin:18px 0 12px;box-shadow:0 24px 60px rgba(8,37,69,0.5)}
+.frame img{display:block;width:100%;height:auto}
+.cap{font-size:0.84rem;color:var(--muted);max-width:70ch}
+.cap b{color:var(--text)}
+.duo{display:grid;grid-template-columns:1.1fr 0.9fr;gap:34px;align-items:center}
+.duo--flip .duo-txt{order:2}
+.shot{max-width:340px;width:100%;margin:0 auto;border:1px solid var(--border-strong);border-radius:16px;overflow:hidden;box-shadow:0 30px 70px rgba(8,37,69,0.6)}
+.shot img{display:block;width:100%;height:auto}
+.shot-tag{text-align:center;margin-top:12px;font-family:'Press Start 2P',monospace;font-size:8px;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase}
+.shot-tag b{color:var(--amber)}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 36px;margin-top:12px}
+.why-item{padding:16px 0;border-bottom:1px dashed var(--border)}
+.why-item h3{font-size:0.95rem;font-weight:700;color:var(--cream);margin-bottom:5px}
+.why-item p{font-size:0.88rem;color:var(--muted);margin:0;max-width:none}
+.tl{margin-top:10px}
+.tl-row{display:grid;grid-template-columns:110px 1fr;gap:24px;padding:20px 0;border-bottom:1px solid var(--border)}
+.tl-date{font-family:'Press Start 2P',monospace;font-size:9px;color:var(--green);line-height:1.9;padding-top:3px}
+.tl-row h3{font-size:1rem;font-weight:700;color:var(--cream);margin-bottom:4px}
+.tl-row p{font-size:0.92rem;color:var(--muted);margin:0;max-width:64ch}
+.tl-row b{color:var(--text)}
+.btns{display:flex;gap:14px;flex-wrap:wrap;margin-top:44px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;font-weight:600;font-size:0.9rem;border-radius:5px;text-decoration:none}
+.btn-p{background:var(--sky);color:var(--navy-900)}
+.btn-p:hover{background:var(--sky-light)}
+.btn-g{border:1px solid rgba(159,212,242,0.35);color:var(--sky)}
+.btn-g:hover{border-color:var(--sky)}
+@media(max-width:820px){.statrow{grid-template-columns:repeat(2,1fr)}.duo{grid-template-columns:1fr;gap:22px}.duo--flip .duo-txt{order:0}.why-grid{grid-template-columns:1fr}.tl-row{grid-template-columns:1fr;gap:6px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="eyebrow">BitBrd &middot; build story</span>
+  <h1>The moon on this homepage runs a loyalty program.</h1>
+  <p class="lede">Most coffee shops bolt a loyalty app onto the side of their website and pay a monthly fee for the privilege. Witches Brew Coffee Co. did the opposite: the loyalty program is hidden <b>inside the artwork</b>. The moon in the homepage hero reads the real lunar phase over New Orleans, and depending on what the sky is doing that night, it hands out a different reward. Four ways to become a regular, one moon, zero apps. Here is how each one works.</p>
+
+  <div class="statrow">
+    <div class="stat"><b>4</b><span>signup surfaces built into one homepage</span></div>
+    <div class="stat"><b>1</b><span>moon, and it changes with the real sky</span></div>
+    <div class="stat"><b>0</b><span>loyalty apps or monthly fees</span></div>
+    <div class="stat"><b>13</b><span>full moons a year the coupon quietly unlocks</span></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">01</span></div>
+    <h2>The moon knows what night it is</h2>
+    <div class="frame"><img src="/builds/moon-calendar.png" alt="The site's tonight's-moon panel, showing a live-computed waxing gibbous with the phase name and illumination percent" loading="lazy" /></div>
+    <p class="cap">This is the whole trick. The moon in the hero is <b>not a picture</b> &mdash; the site computes the lunar phase live for New Orleans and draws the exact shape, from a hair-thin crescent to a full disc, along with a companion <b>moon calendar page</b> that maps the next ninety days. Because the page always knows what the sky is doing, the same moon can behave differently on different nights. Everything below is built on that one fact.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">02</span></div>
+    <h2>On a full moon, the moon is a coupon</h2>
+    <div class="duo">
+      <div class="duo-txt">
+        <p>On the one night a month the moon is <b>actually full</b>, it starts to glow and a small star winks beside it. Tap it and it opens the <b>Full Moon Draught</b>: a free size upgrade, good that day only. You get a pass and a gold QR to show at the counter.</p>
+        <p>There is no discount code and nothing to redeem online. It's a comp the barista honors on sight, which means it <b>can't be farmed</b> &mdash; naturally one per visit. And after the shop closes at 6pm, the same moon politely tells you it's done for the night and gives you the date of the next full moon. Thirteen nights a year, and only those nights.</p>
+      </div>
+      <div>
+        <div class="shot"><img src="/builds/moon-fullmoon.png" alt="The Full Moon Draught pass: a MOON-VUY6 code, a gold QR, and the line your barista pours a large at the small price" loading="lazy" /></div>
+        <div class="shot-tag">full moon only &middot; <b>free size upgrade</b></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">03</span></div>
+    <h2>Every other night, the moon collects reminders</h2>
+    <div class="duo duo--flip">
+      <div>
+        <div class="shot"><img src="/builds/moon-reminder.png" alt="The everyday-moon reminder: a row of moons climbing toward full, she isn't full tonight, and a text-me field" loading="lazy" /></div>
+        <div class="shot-tag">the other ~29 nights &middot; <b>list builder</b></div>
+      </div>
+      <div class="duo-txt">
+        <p>The other twenty-nine nights the moon isn't full, so tapping it does something quieter: <b>&ldquo;She isn't full tonight. Let me text you when she is.&rdquo;</b> One field, one tap, and they're on the full-moon list, with a link straight to the New Orleans moon calendar.</p>
+        <p>A decoration that used to just sit in the corner of the hero is now the shop's <b>best-targeted list builder</b> &mdash; and it reuses the moon that's already on the screen, so it adds nothing to the page's weight. The art from a coffee shop that pours a full-moon special quietly recruits exactly the people who'd want to know.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">04</span></div>
+    <h2>The tea at the door</h2>
+    <div class="duo">
+      <div class="duo-txt">
+        <p>The first thing a new visitor meets is the <b>Coven</b>: a free small tea just for joining, dressed in the same midnight-and-gold as the moon. Name, number, email, one <b>Subscribe</b> button &mdash; no checkbox to hunt for, because the act of subscribing is the consent.</p>
+        <p>It has manners. It waits until you've actually scrolled and settled in before it appears, shows once, and if you wave it off it leaves you alone for a <b>month</b>. On a phone the whole card scrolls as one piece, so the fine print never spills outside its own frame.</p>
+      </div>
+      <div>
+        <div class="shot"><img src="/builds/moon-coven-tea.png" alt="The Coven popup: a steaming teapot, Join the Coven, Get a Free Tea, and name, phone, and email fields" loading="lazy" /></div>
+        <div class="shot-tag">step one &middot; <b>free small tea</b></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">05</span></div>
+    <h2>The birthday club</h2>
+    <div class="duo duo--flip">
+      <div>
+        <div class="shot"><img src="/builds/moon-coven-birthday.png" alt="The Coven's second screen: a candle, A Free Drink on Your Name Day, and month and day selectors" loading="lazy" /></div>
+        <div class="shot-tag">step two &middot; <b>free drink on your name day</b></div>
+      </div>
+      <div class="duo-txt">
+        <p>Subscribe and the popup asks for one more thing: your <b>name day</b>. Month and day, no year. That earns a free drink when your birthday comes around.</p>
+        <p>It's the cheapest loyalty a shop can run and the warmest. It costs one drink, and it buys a reason to reach out on the <b>one day a year</b> a customer most wants to be remembered by the place they get their coffee. The date rides along on the same subscriber record, so there's nothing else to manage.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">06</span></div>
+    <h2>One list, four doors</h2>
+    <p>Four different moments &mdash; a full moon, an ordinary night, the front-door tea, a birthday &mdash; all pour into the <b>same place</b>: the shop's own customer list in Shopify, each signup tagged by the door it came through. No third-party loyalty platform, no monthly subscription, and the texts go out over the shop's <b>own phone number</b>.</p>
+    <div class="why-grid">
+      <div class="why-item"><h3>Tagged at the source</h3><p>Full-moon, moon-reminder, tea popup, and birthday each stamp their own source on the customer record, so the shop can see which door works.</p></div>
+      <div class="why-item"><h3>Shopify is the source of truth</h3><p>Every subscriber lands as a Shopify customer. No Listmonk, no export, no second database to keep in sync.</p></div>
+      <div class="why-item"><h3>Nothing stacks</h3><p>The moon popups, the tea popup, and the shop's other overlays know about each other and never pile up two-deep on the screen.</p></div>
+      <div class="why-item"><h3>It can't break the heroes</h3><p>The moon features attach to whichever hero is showing and quietly do nothing on rain, event, and sabbat nights, so the site's other custom skies are never touched.</p></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">07</span></div>
+    <h2>The build log</h2>
+    <div class="tl">
+      <div class="tl-row"><div class="tl-date">JUL 24</div><div><h3>The moon becomes a coupon</h3><p>The Full Moon Draught ships, hooked onto the site's existing phase-aware full-moon hero so it can only ever fire on a real full moon. Barista-comp reward, gold QR, and a closed-for-the-night message after 6pm.</p></div></div>
+      <div class="tl-row"><div class="tl-date">JUL 24</div><div><h3>Every other night gets a job</h3><p>Eight moon-art options, one chosen: a row of phases climbing to full. The ordinary-night moon becomes a one-tap signup for full-moon reminders, linked to the calendar.</p></div></div>
+      <div class="tl-row"><div class="tl-date">JUL 24</div><div><h3>The Coven gets a birthday</h3><p>The front-door tea popup is rebuilt in the celestial look and grows a second screen: a name-day for a free birthday drink. Both write straight to Shopify.</p></div></div>
+      <div class="tl-row"><div class="tl-date">JUL 24</div><div><h3>The calendar turns blue</h3><p>The New Orleans Moon Calendar page is re-skinned into the same blue-and-gold starfield, so the reminder's link lands somewhere that matches.</p></div></div>
+      <div class="tl-row"><div class="tl-date">TODAY</div><div><h3>Live on the homepage</h3><p>Open <b>witchesbrew.co</b> and find the moon in the top corner. What it does depends on the night you visit.</p></div></div>
+    </div>
+  </div>
+
+  <div class="btns">
+    <a class="btn btn-p" href="https://www.witchesbrew.co" target="_blank" rel="noopener">Visit the homepage &rarr;</a>
+    <a class="btn btn-g" href="/">Back to BitBrd</a>
+  </div>
+</div>
+</body>
+</html>
