@@ -1,0 +1,168 @@
+---
+const title = 'Re-skinning an Espresso Machine From the Inside | BitBrd';
+const description = 'We took apart a commercial espresso machine’s firmware, found the image pack and the compiled UI, and rebuilt the interface: cauldrons, a chalice, a zodiac dial, and a moon that waxes as your shot pulls. No source code, no vendor tooling.';
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href="https://bitbrd.com/espresso" />
+<link rel="icon" href="/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{--navy-900:#082545;--navy-800:#0A1F3D;--sky:#9FD4F2;--sky-light:#CFE9F7;--ink:#0A1628;--cream:#F7FAFD;--text:#E8F2FC;--muted:#8CA3BA;--green:#34D399;--amber:#E8C547;--border:rgba(159,212,242,0.15);--border-strong:rgba(159,212,242,0.35)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--ink);color:var(--text);line-height:1.65}
+.wrap{max-width:1020px;margin:auto;padding:60px 24px 80px}
+.eyebrow{font-family:'Press Start 2P',monospace;font-size:10px;color:var(--sky);letter-spacing:0.15em;text-transform:uppercase}
+h1{font-family:'Press Start 2P',monospace;font-size:clamp(1.1rem,3vw,1.7rem);color:var(--cream);margin:16px 0 14px;line-height:1.55}
+.lede{color:var(--muted);max-width:64ch;margin-bottom:26px}
+.lede b{color:var(--text)}
+a{text-decoration:none;color:inherit}
+.statrow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:6px 0 30px}
+.stat{background:var(--navy-800);border:1px solid var(--border);border-radius:8px;padding:18px;text-align:center}
+.stat b{display:block;font-family:'Press Start 2P',monospace;font-size:1.05rem;color:var(--green);margin-bottom:8px}
+.stat span{font-size:0.8rem;color:var(--muted)}
+.sec{margin-top:64px}
+.sec-tag{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;flex-wrap:wrap}
+.sec-num{font-family:'Press Start 2P',monospace;font-size:11px;color:var(--sky)}
+.sec h2{font-family:'Press Start 2P',monospace;font-size:clamp(0.85rem,1.8vw,1.05rem);color:var(--cream);line-height:1.6;margin-bottom:14px}
+.sec p{color:var(--muted);max-width:68ch;margin-bottom:13px;font-size:0.97rem}
+.sec b{color:var(--text)}
+.frame{border:1px solid var(--border-strong);border-radius:10px;overflow:hidden;background:var(--ink);margin:18px 0 12px;box-shadow:0 24px 60px rgba(8,37,69,0.5)}
+.frame img,.frame video{display:block;width:100%;height:auto}
+.cap{font-size:0.84rem;color:var(--muted);max-width:70ch}
+.cap b{color:var(--text)}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.code{background:#061020;border:1px solid var(--border);border-radius:8px;padding:16px 18px;overflow-x:auto;margin:14px 0 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.82rem;color:var(--sky-light);line-height:1.75}
+.code i{color:var(--muted);font-style:normal}
+.code b{color:var(--green);font-weight:400}
+.tl{margin-top:10px}
+.tl-row{display:grid;grid-template-columns:110px 1fr;gap:24px;padding:20px 0;border-bottom:1px solid var(--border)}
+.tl-date{font-family:'Press Start 2P',monospace;font-size:9px;color:var(--green);line-height:1.9;padding-top:3px}
+.tl-row h3{font-size:1rem;font-weight:700;color:var(--cream);margin-bottom:4px}
+.tl-row p{font-size:0.92rem;color:var(--muted);margin:0;max-width:64ch}
+.tl-row b{color:var(--text)}
+.btns{display:flex;gap:14px;flex-wrap:wrap;margin-top:44px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;font-weight:600;font-size:0.9rem;border-radius:5px;text-decoration:none}
+.btn-p{background:var(--sky);color:var(--navy-900)}
+.btn-p:hover{background:var(--sky-light)}
+.btn-g{border:1px solid rgba(159,212,242,0.35);color:var(--sky)}
+.btn-g:hover{border-color:var(--sky)}
+@media(max-width:820px){.statrow{grid-template-columns:repeat(2,1fr)}.duo{grid-template-columns:1fr}.tl-row{grid-template-columns:1fr;gap:6px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="eyebrow">BitBrd &middot; build story</span>
+  <h1>Re-skinning an espresso machine from the inside.</h1>
+  <p class="lede">A commercial espresso machine ships with the interface the factory gave you, and that is normally the end of the conversation. There is no theme setting, no SDK, no source. What there <i>is</i>, if you go looking, is an SD card with an <b>image pack and a compiled UI</b> on it. This is the story of reading both, working out their formats from first principles, and rebuilding the machine's screen around a coffee shop's actual brand: cauldrons instead of cups, a chalice for the long pour, a zodiac wheel where the timer ring used to be, and a moon that waxes from new to full while your shot runs.</p>
+
+  <div class="statrow">
+    <div class="stat"><b>615</b><span>UI images recovered from the pack</span></div>
+    <div class="stat"><b>3</b><span>separate icon sets, all of which had to match</span></div>
+    <div class="stat"><b>624</b><span>machine variables mapped by name</span></div>
+    <div class="stat"><b>0</b><span>lines of vendor source code available</span></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">01</span></div>
+    <h2>The finished screen</h2>
+    <div class="frame"><img src="/builds/espresso-screen.png" alt="The rebuilt espresso machine interface: cauldron and chalice buttons, a zodiac dial with a waxing moon, and a shop logo across the purge bar" loading="lazy" /></div>
+    <p class="cap">Every element here is a real file that now lives on the machine. Cauldrons select the short shots, a chalice takes the long pour, the shop's logo rides the purge bar, and the crescent in the top left replaced a cog. The dial in the middle is the shot timer.</p>
+    <p>Nothing about this required permission. It required understanding two binary formats well enough to write into them safely.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">02</span></div>
+    <h2>Open the pack</h2>
+    <p>The SD card holds an <b>image.bin</b> and an <b>image.idx</b>. The index turned out to be a flat array of sixteen-byte records with no header at all: an id, a type, an offset, width, height, size, and a frame count. Offsets are absolute against a base address, so you subtract it to get a file position.</p>
+    <div class="code">u16 id &nbsp;&middot;&nbsp; u8 type &nbsp;&middot;&nbsp; u32 offset &nbsp;&middot;&nbsp; u16 w &nbsp;&middot;&nbsp; u16 h &nbsp;&middot;&nbsp; u32 size &nbsp;&middot;&nbsp; u8 frames<br /><i>type 0x10 = a PNG stored whole &nbsp;&middot;&nbsp; 0x04 = zlib RGB565 &nbsp;&middot;&nbsp; 0x20 = animation</i></div>
+    <p>The check that proved the format was right: the <b>last record's offset plus its size lands exactly on the file length</b>, to the byte. Not close. Exactly. When a guessed format does that, it is not a guess any more.</p>
+    <p>Out came <b>615 images</b>. Buttons, icons, backgrounds, and one 55-frame animation that turned out to be the shot timer.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">03</span></div>
+    <h2>Cups become cauldrons</h2>
+    <div class="frame"><img src="/builds/espresso-tabs.png" alt="The four shot-selector buttons before and after: espresso cups and tall mugs above, cauldrons and chalices below" loading="lazy" /></div>
+    <p class="cap">Above, the factory buttons. Below, the replacements. The short shots became <b>cauldrons</b>; the long pours became a <b>chalice</b>, chosen because a tall narrow silhouette reads against a squat one at a glance, which matters when a barista is mid-service and not looking carefully.</p>
+    <p>The trap here was scale. Our first cauldrons measured 68% of the button's width where the original cups were 76%, and they looked weak next to everything else on the screen without it being obvious why. The fix was to stop eyeballing it and <b>measure the original's ink-to-button ratio</b>, then match it.</p>
+    <p>There was a second trap, and it cost a flash cycle. There are <b>three separate button sets</b> at three different sizes, one for the main screen, one for the sub-menu, one for the top menu. Change one and the machine looks half-finished in a way that is hard to spot from a photograph.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">04</span></div>
+    <h2>A dial that keeps time by the sky</h2>
+    <div class="frame"><img src="/builds/espresso-dial.png" alt="The shot timer before and after: an orange progress ring beside a zodiac wheel with a waxing moon" loading="lazy" /></div>
+    <p class="cap">Left, the original: a grey track, an orange arc, and a dot that chases around it. Right, the replacement. The ring is gone entirely. Twelve zodiac houses mark the wheel and a single moon travels it, <b>waxing from new to full as the shot runs</b>.</p>
+    <p>This works because those 55 frames are not a video. They are a <b>state set</b>, and the machine picks one according to how many seconds have elapsed. That distinction matters more than it sounds: this particular panel sometimes drops frames, and a trail or a comet tail would stutter, because those encode <i>history</i>. A moon phase encodes <i>state</i>. Any single frame is correct on its own, so a dropped frame costs you nothing.</p>
+    <p>The moon is drawn as a mask rather than a picture. A half-disc plus a terminator ellipse defines the lit limb; the moon's body and its craters are drawn separately and composited <i>through</i> that mask, so the craters clip at the terminator for free.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">05</span></div>
+    <h2>Twenty-five seconds, in real time</h2>
+    <div class="frame"><img src="/builds/espresso-shot25.gif" alt="Animated: the espresso machine screen counting from zero to twenty-five seconds while a moon travels the zodiac dial and waxes" loading="lazy" /></div>
+    <p class="cap">A <b>25 second double shot</b>, the shop's target time, at one frame per second. The moon starts new, climbs the wheel, and reaches roughly first quarter as the shot lands. Then the dial clears: the resting frame is deliberately blank, so an idle machine shows nothing but the houses.</p>
+    <p>That last detail was a bug report. The first build blanked the final frame, and the moon still stuck on screen &mdash; because the panel <b>rests one frame earlier than we assumed</b>. Both end frames are blank now.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">06</span></div>
+    <h2>Colour lives in two places, and one of them will hurt you</h2>
+    <p>Recolouring the interface meant chasing the factory orange through <b>baked pixels</b> in the image pack <i>and</i> through colour fields inside the compiled UI file. The second is a two-byte edit; the first is a rewrite.</p>
+    <p>Two things went wrong here, and both are worth repeating because they are the kind of mistake that looks like success. First: <b>there is more than one orange.</b> Patching the obvious one left the centre timer numeral stubbornly unchanged, because it used a different value. There were four in total, across 216 fields.</p>
+    <p>Second: an early sweep rotated each pixel's hue while preserving its brightness. That is exactly right for a thin accent line and exactly wrong for a filled button, which came out a pale mint rather than the deep green intended &mdash; on <b>62 of 306 images</b>. The fix was to pick the target colour by role: a large filled area becomes the paint colour, a small mark becomes its light tint.</p>
+    <p>And the reds were left alone on purpose. They are attached to the fault list &mdash; no water, heating timeout, extraction timeout. <b>A green fault reads as a normal machine.</b> That is not a theming decision.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">07</span></div>
+    <h2>The static screen</h2>
+    <p>The main screen's header was replaced with the shop's name. It came back as television snow.</p>
+    <p>The first theory was wrong: the image was fine, well formed, correct dimensions, valid PNG. The actual cause was that <b>this one image is not stored as a PNG at all.</b> Its frames are zlib-compressed RGB565 raw pixels, while every other animation in the pack is PNG. Writing a PNG into a raw-pixel slot hands the decoder a file header and asks it to draw it.</p>
+    <p>The extraction tool had hidden this, because it helpfully decodes both formats out to .png. They looked identical from the outside. The packer now reads each frame's <b>own type byte</b> and encodes to match.</p>
+    <p class="cap">The general lesson, and the one worth carrying to any binary format: a check that confirms your output is <b>well-formed</b> tells you nothing about whether it is <b>well-addressed</b>.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">08</span></div>
+    <h2>What the machine already knows</h2>
+    <p>Alongside the images sits a name table &mdash; <b>624 variables</b> the machine tracks internally, in Chinese, most of which never appear on any screen. Reading it turned up a lifetime shot counter, cleaning-cycle counts and status, a water-level probe, and the auto on/off schedule.</p>
+    <p>It also explained a mystery. A small down-arrow with a zero beside it, which nobody at the shop could identify, is the <b>grinder-link adjustment</b>: the machine compares each shot against a target time and tells the barista how many steps to move the grinder, and in which direction. They were not using the feature, so it has been retired.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">09</span></div>
+    <h2>Working without a safety net</h2>
+    <p>There is no undo on a machine that pulls a hundred shots a day, so the build never edits the firmware in place. It copies the whole payload, modifies the copy, and then <b>verifies before it will declare success</b>: the index tail must land exactly on the file length, every untouched image must come back byte-identical, and the rebuilt files get re-extracted and re-measured rather than trusted.</p>
+    <p>Those assertions caught two failures that would have shipped silently. One was an assumption that image ids line up between the machine's two brew heads &mdash; they mostly do, and then they drift by one partway through, so ids are now matched by content hash instead of arithmetic. The other was a plan to append a scheduled function to the machine's script, which <b>already defined one</b>; in this language the second definition silently wins, and the readout the first one drove would simply have stopped.</p>
+    <p class="cap">Both were found by checks that <b>refuse to proceed</b> rather than checks that print a reassuring line. On a system you cannot test without deploying, that difference is the whole job.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag"><span class="sec-num">10</span></div>
+    <h2>Where it stands</h2>
+    <div class="frame"><img src="/builds/espresso-rest.png" alt="The espresso machine screen at rest: zodiac houses with an empty dial" loading="lazy" /></div>
+    <p class="cap">At rest. No moon, no ring, no leftover state &mdash; just the houses waiting.</p>
+    <div class="tl">
+      <div class="tl-row"><div class="tl-date">FORMAT</div><div><h3>Image pack and compiled UI, both readable</h3><p>Sixteen-byte index records, three payload types, colour fields at a known offset. Round-trips byte-perfect.</p></div></div>
+      <div class="tl-row"><div class="tl-date">SHIPPED</div><div><h3>Full re-skin on both brew heads</h3><p>Three button sets, the timer dial, the header, the purge bar, two top-bar icons, and every orange in the interface.</p></div></div>
+      <div class="tl-row"><div class="tl-date">NEXT</div><div><h3>Driving the screen from script</h3><p>The vendor's scripting layer can draw a chosen animation frame directly, which would let the interface react to the machine rather than only display it. Being tested carefully, on a machine that has to open tomorrow.</p></div></div>
+    </div>
+  </div>
+
+  <div class="btns">
+    <a class="btn btn-p" href="/">BitBrd</a>
+    <a class="btn btn-g" href="/kds">The kitchen display build</a>
+    <a class="btn btn-g" href="/swamp">The homepage that ends in a swamp</a>
+  </div>
+</div>
+</body>
+</html>
